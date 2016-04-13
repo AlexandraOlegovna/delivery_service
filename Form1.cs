@@ -37,14 +37,10 @@ namespace Delivery
             metroTextBox1.Text = metroTrackBar1.Value.ToString();
         }
 
-        private void metroTrackBar2_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
-        {
-            metroTextBox2.Text = metroTrackBar2.Value.ToString();
-        }
 
         private bool NotContainSymbols(string s)
         {
-            foreach(char c in s)
+            foreach (char c in s)
             {
                 if (!"0123456789".Contains(c.ToString()))
                     return false;
@@ -52,33 +48,18 @@ namespace Delivery
             return true;
         }
 
-        private void textbox_Handler(MetroFramework.Controls.MetroTextBox mtxtbx, MetroFramework.Controls.MetroTrackBar mtrckbr)
-        {
-            if (!NotContainSymbols(mtxtbx.Text))
-                mtxtbx.Text = mtxtbx.Text.Substring(0, mtxtbx.Text.Length - 1);
-            if (mtxtbx.Text == "")
-                mtxtbx.Text = "0";
-            mtxtbx.Select(mtxtbx.Text.Length, 0);
-            int v = System.Convert.ToInt32(mtxtbx.Text);
-            if (v > mtrckbr.Maximum)
-                mtrckbr.Value = mtrckbr.Maximum;
-            else
-                mtrckbr.Value = v;
-        }
-
         private void metroTextBox1_TextChanged(object sender, System.EventArgs e)
         {
-            textbox_Handler(metroTextBox1, metroTrackBar1);
-            //if (!NotContainSymbols(metroTextBox1.Text))
-            //    metroTextBox1.Text = metroTextBox1.Text.Substring(0, metroTextBox1.Text.Length - 1);
-            //if (metroTextBox1.Text == "")
-            //    metroTextBox1.Text = "0";
-            //metroTextBox1.Select(metroTextBox1.Text.Length, 0);
-            //int v = System.Convert.ToInt32(metroTextBox1.Text);
-            //if (v > metroTrackBar1.Maximum)
-            //    metroTrackBar1.Value = metroTrackBar1.Maximum;
-            //else
-            //    metroTrackBar1.Value = v;
+            if (!NotContainSymbols(metroTextBox1.Text))
+                metroTextBox1.Text = metroTextBox1.Text.Substring(0, metroTextBox1.Text.Length - 1);
+            if (metroTextBox1.Text == "")
+                metroTextBox1.Text = "0";
+            metroTextBox1.Select(metroTextBox1.Text.Length, 0);
+            int v = System.Convert.ToInt32(metroTextBox1.Text);
+            if (v > metroTrackBar1.Maximum)
+                metroTrackBar1.Value = metroTrackBar1.Maximum;
+            else
+                metroTrackBar1.Value = v;
         }
 
         private void metroTextBox1_Click(object sender, System.EventArgs e)
@@ -93,18 +74,23 @@ namespace Delivery
 
         private void metroTextBox2_TextChanged(object sender, System.EventArgs e)
         {
-            textbox_Handler(metroTextBox2, metroTrackBar2);
-        }
-
-        private void S(object sender, System.EventArgs e)
-        {
-
+            if (!NotContainSymbols(metroTextBox1.Text))
+                metroTextBox1.Text = metroTextBox1.Text.Substring(0, metroTextBox1.Text.Length - 1);
+            if (metroTextBox1.Text == "")
+                metroTextBox1.Text = "0";
+            metroTextBox1.Select(metroTextBox1.Text.Length, 0);
         }
 
         private void metroTile2_Click(object sender, System.EventArgs e)
         {
             this.Controls.Clear();
             this.InitializeComponent();
+        }
+
+        private void metroTextBox1_Leave(object sender, System.EventArgs e)
+        {
+            if (System.Convert.ToInt32(metroTextBox1.Text) > metroTrackBar1.Maximum)
+                metroTextBox1.Text = metroTrackBar1.Maximum.ToString();
         }
     }
 }

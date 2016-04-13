@@ -38,7 +38,6 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
-            this.metroTrackBar2 = new MetroFramework.Controls.MetroTrackBar();
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroComboBox4 = new MetroFramework.Controls.MetroComboBox();
@@ -122,7 +121,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(686, 39);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(30, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(29, 19);
             this.metroLabel2.TabIndex = 5;
             this.metroLabel2.Text = "TO:";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -182,6 +181,7 @@
             this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.metroTextBox1.TextChanged += new System.EventHandler(this.metroTextBox1_TextChanged);
             this.metroTextBox1.Click += new System.EventHandler(this.metroTextBox1_Click);
+            this.metroTextBox1.Leave += new System.EventHandler(this.metroTextBox1_Leave);
             // 
             // metroTrackBar1
             // 
@@ -196,20 +196,6 @@
             this.metroTrackBar1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTrackBar1.Value = 0;
             this.metroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
-            // 
-            // metroTrackBar2
-            // 
-            this.metroTrackBar2.BackColor = System.Drawing.Color.Transparent;
-            this.metroTrackBar2.Location = new System.Drawing.Point(520, 156);
-            this.metroTrackBar2.Name = "metroTrackBar2";
-            this.metroTrackBar2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.metroTrackBar2.Size = new System.Drawing.Size(123, 23);
-            this.metroTrackBar2.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroTrackBar2.TabIndex = 13;
-            this.metroTrackBar2.Text = "metroTrackBar2";
-            this.metroTrackBar2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTrackBar2.Value = 0;
-            this.metroTrackBar2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar2_Scroll);
             // 
             // metroTextBox2
             // 
@@ -227,7 +213,7 @@
             this.metroTextBox2.CustomButton.Visible = false;
             this.metroTextBox2.Lines = new string[] {
         "0"};
-            this.metroTextBox2.Location = new System.Drawing.Point(583, 124);
+            this.metroTextBox2.Location = new System.Drawing.Point(573, 138);
             this.metroTextBox2.MaxLength = 32767;
             this.metroTextBox2.Name = "metroTextBox2";
             this.metroTextBox2.PasswordChar = '\0';
@@ -250,7 +236,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(520, 126);
+            this.metroLabel5.Location = new System.Drawing.Point(510, 140);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(47, 19);
             this.metroLabel5.TabIndex = 11;
@@ -354,7 +340,7 @@
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.Location = new System.Drawing.Point(390, 271);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(151, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(149, 19);
             this.metroLabel7.TabIndex = 21;
             this.metroLabel7.Text = "SUCCESS / UNSUCCESS";
             this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -372,7 +358,6 @@
             this.Controls.Add(this.metroDateTime1);
             this.Controls.Add(this.metroCheckBox1);
             this.Controls.Add(this.metroComboBox4);
-            this.Controls.Add(this.metroTrackBar2);
             this.Controls.Add(this.metroTextBox2);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.metroTrackBar1);
@@ -393,7 +378,6 @@
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "Add New Order";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.Click += new System.EventHandler(this.S);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,7 +395,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
-        private MetroFramework.Controls.MetroTrackBar metroTrackBar2;
         private MetroFramework.Controls.MetroTextBox metroTextBox2;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroComboBox metroComboBox4;
