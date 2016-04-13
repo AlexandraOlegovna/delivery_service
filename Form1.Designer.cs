@@ -54,11 +54,13 @@
             // metroRadioButton1
             // 
             this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Checked = true;
             this.metroRadioButton1.Location = new System.Drawing.Point(225, 31);
             this.metroRadioButton1.Name = "metroRadioButton1";
             this.metroRadioButton1.Size = new System.Drawing.Size(164, 15);
             this.metroRadioButton1.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroRadioButton1.TabIndex = 0;
+            this.metroRadioButton1.TabStop = true;
             this.metroRadioButton1.Text = "AGENT --> WARENHOUSE";
             this.metroRadioButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroRadioButton1.UseSelectable = true;
@@ -120,7 +122,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(686, 39);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(29, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(30, 19);
             this.metroLabel2.TabIndex = 5;
             this.metroLabel2.Text = "TO:";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -296,6 +298,7 @@
             // 
             // metroComboBox3
             // 
+            this.metroComboBox3.Enabled = false;
             this.metroComboBox3.FormattingEnabled = true;
             this.metroComboBox3.ItemHeight = 23;
             this.metroComboBox3.Items.AddRange(new object[] {
@@ -344,13 +347,14 @@
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile2.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTile2.UseSelectable = true;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.Location = new System.Drawing.Point(390, 271);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(149, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(151, 19);
             this.metroLabel7.TabIndex = 21;
             this.metroLabel7.Text = "SUCCESS / UNSUCCESS";
             this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -381,8 +385,11 @@
             this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.metroRadioButton2);
             this.Controls.Add(this.metroRadioButton1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 21);
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "Add New Order";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;

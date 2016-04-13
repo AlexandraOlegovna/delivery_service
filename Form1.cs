@@ -89,5 +89,11 @@ namespace Delivery
         {
 
         }
+
+        private void metroTile2_Click(object sender, System.EventArgs e)
+        {
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }
     }
 }
