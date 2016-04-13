@@ -1,4 +1,5 @@
 ﻿using MetroFramework.Forms;
+using FirebirdSql.Data.FirebirdClient;
 
 namespace Delivery
 {
@@ -7,8 +8,16 @@ namespace Delivery
         public Form1()
         {
             InitializeComponent();
-            Model1 a = new Model1();
-            a.Database.Connection.Open();
+            Model1 dbContext = new Model1();
+            string s = dbContext.Database.Connection.ConnectionString;
+            var builder = new FbConnectionStringBuilder(s);
+            builder.UserID = "it39";
+            builder.Password = "it39";
+
+            dbContext.Database.Connection.ConnectionString = builder.ConnectionString;
+
+            // пробуем подключится
+            dbContext.Database.Connection.Open();
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, System.EventArgs e)
