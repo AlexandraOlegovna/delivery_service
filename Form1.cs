@@ -7,6 +7,8 @@ namespace Delivery
         public Form1()
         {
             InitializeComponent();
+            Model1 a = new Model1();
+            a.Database.Connection.Open();
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, System.EventArgs e)
