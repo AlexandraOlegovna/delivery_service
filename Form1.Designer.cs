@@ -48,6 +48,7 @@
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // metroRadioButton1
@@ -345,11 +346,20 @@
             this.metroLabel7.Text = "SUCCESS / UNSUCCESS";
             this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(115, 300);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(489, 176);
+            this.textBox1.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 318);
+            this.ClientSize = new System.Drawing.Size(934, 514);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroTile2);
             this.Controls.Add(this.metroTile1);
@@ -405,6 +415,21 @@
         private MetroFramework.Controls.MetroTile metroTile1;
         private MetroFramework.Controls.MetroTile metroTile2;
         private MetroFramework.Controls.MetroLabel metroLabel7;
+        private System.Windows.Forms.TextBox textBox1;
+
+
+
+
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.BindingSource bindingSource;
+        private System.Windows.Forms.ToolStripButton btnAdd;
+        private System.Windows.Forms.ToolStripButton btnEdit;
+        private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnRefresh;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnExit;
     }
 }
 
