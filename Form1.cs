@@ -9,10 +9,12 @@ namespace Delivery
 {
     public partial class Form1 : MetroForm
     {
+
+        Model3 dbContext = new Model3();
+
         public Form1()
         {
             InitializeComponent();
-            Model3 dbContext = new Model3();
             string s = dbContext.Database.Connection.ConnectionString;
             var builder = new FbConnectionStringBuilder(s);
             builder.UserID = "it39";
@@ -23,18 +25,11 @@ namespace Delivery
             // пробуем подключится
             dbContext.Database.Connection.Open();
 
-            var customers =
-                from customer in dbContext.AGENTs
-                orderby customer.NAME_AG
-                select customer;
-            var custs = dbContext.AGENTs.Local;
-            string ss = custs.ToString();
-            bindingSource = new System.Windows.Forms.BindingSource();
-            List<AGENT> a = customers.ToList();
+            //var custs = dbContext.AGENTs.Local;
+            //string ss = custs.ToString();
+            //bindingSource = new System.Windows.Forms.BindingSource();
             //bindingSource.DataSource = customers.ToBindingList();
-            metroComboBox1.Items.Clear();
-            for (int i = 0; i < a.Count; ++i)
-                metroComboBox1.Items.Add(a[i].NAME_AG.Replace(" ", string.Empty));
+
 
             //for (int i = 0; i < a.Count; ++i)
             //    textBox1.Text += a[i].NOMENCLATURE.Replace(" ", string.Empty);
@@ -154,6 +149,54 @@ namespace Delivery
         {
             if (System.Convert.ToInt32(metroTextBox1.Text) > metroTrackBar1.Maximum)
                 metroTextBox1.Text = metroTrackBar1.Maximum.ToString();
+        }
+
+        private void metroRadioButton1_CheckedChanged(object sender, System.EventArgs e)
+        {
+            var customers =
+                from customer in dbContext.AGENTs
+                orderby customer.NAME_AG
+                select customer;
+            List<AGENT> a = customers.ToList();
+            metroComboBox1.Items.Clear();
+            for (int i = 0; i < a.Count; ++i)
+                metroComboBox1.Items.Add(a[i].NAME_AG);
+
+            var whs =
+                from customer in dbContext.WAREHOUSEs
+                orderby customer.NAIMEN
+                select customer;
+            List<WAREHOUSE> b = whs.ToList();
+            metroComboBox2.Items.Clear();
+            for (int i = 0; i < b.Count; ++i)
+                metroComboBox2.Items.Add(b[i].NAIMEN);
+
+            metroComboBox1.Enabled = true;
+            metroComboBox2.Enabled = true;
+        }
+
+        private void metroRadioButton2_CheckedChanged(object sender, System.EventArgs e)
+        {
+            var customers =
+                from customer in dbContext.AGENTs
+                orderby customer.NAME_AG
+                select customer;
+            List<AGENT> a = customers.ToList();
+            metroComboBox2.Items.Clear();
+            for (int i = 0; i < a.Count; ++i)
+                metroComboBox2.Items.Add(a[i].NAME_AG);
+
+            var whs =
+                from customer in dbContext.WAREHOUSEs
+                orderby customer.NAIMEN
+                select customer;
+            List<WAREHOUSE> b = whs.ToList();
+            metroComboBox1.Items.Clear();
+            for (int i = 0; i < b.Count; ++i)
+                metroComboBox1.Items.Add(b[i].NAIMEN);
+
+            metroComboBox1.Enabled = true;
+            metroComboBox2.Enabled = true;
         }
     }
 }

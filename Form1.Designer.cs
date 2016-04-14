@@ -54,31 +54,32 @@
             // metroRadioButton1
             // 
             this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Checked = true;
             this.metroRadioButton1.Location = new System.Drawing.Point(225, 31);
             this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(164, 15);
+            this.metroRadioButton1.Size = new System.Drawing.Size(155, 15);
             this.metroRadioButton1.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroRadioButton1.TabIndex = 0;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "AGENT --> WARENHOUSE";
+            this.metroRadioButton1.Text = "AGENT --> WAREHOUSE";
             this.metroRadioButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroRadioButton1.UseSelectable = true;
+            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
             // 
             // metroRadioButton2
             // 
             this.metroRadioButton2.AutoSize = true;
             this.metroRadioButton2.Location = new System.Drawing.Point(225, 63);
             this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(164, 15);
+            this.metroRadioButton2.Size = new System.Drawing.Size(155, 15);
             this.metroRadioButton2.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroRadioButton2.TabIndex = 1;
-            this.metroRadioButton2.Text = "WARENHOUSE --> AGENT";
+            this.metroRadioButton2.Text = "WAREHOUSE --> AGENT";
             this.metroRadioButton2.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroRadioButton2.UseSelectable = true;
+            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
             // 
             // metroComboBox1
             // 
+            this.metroComboBox1.Enabled = false;
             this.metroComboBox1.FormattingEnabled = true;
             this.metroComboBox1.ItemHeight = 23;
             this.metroComboBox1.Items.AddRange(new object[] {
@@ -94,6 +95,7 @@
             // 
             // metroComboBox2
             // 
+            this.metroComboBox2.Enabled = false;
             this.metroComboBox2.FormattingEnabled = true;
             this.metroComboBox2.ItemHeight = 23;
             this.metroComboBox2.Items.AddRange(new object[] {
