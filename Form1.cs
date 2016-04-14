@@ -12,7 +12,7 @@ namespace Delivery
         public Form1()
         {
             InitializeComponent();
-            Model1 dbContext = new Model1();
+            Model3 dbContext = new Model3();
             string s = dbContext.Database.Connection.ConnectionString;
             var builder = new FbConnectionStringBuilder(s);
             builder.UserID = "it39";
@@ -31,8 +31,13 @@ namespace Delivery
             string ss = custs.ToString();
             bindingSource = new System.Windows.Forms.BindingSource();
             List<AGENT> a = customers.ToList();
+            //bindingSource.DataSource = customers.ToBindingList();
+            metroComboBox1.Items.Clear();
             for (int i = 0; i < a.Count; ++i)
-                textBox1.Text += Win1251ToUTF8(a[i].NAME_AG);
+                metroComboBox1.Items.Add(a[i].NAME_AG.Replace(" ", string.Empty));
+
+            //for (int i = 0; i < a.Count; ++i)
+            //    textBox1.Text += a[i].NOMENCLATURE.Replace(" ", string.Empty);
             bool b = true;
         }
 
