@@ -3,7 +3,7 @@ using FirebirdSql.Data.FirebirdClient;
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
-
+using System.Data.SqlClient;
 
 namespace Delivery
 {
@@ -153,50 +153,85 @@ namespace Delivery
 
         private void metroRadioButton1_CheckedChanged(object sender, System.EventArgs e)
         {
-            var customers =
-                from customer in dbContext.AGENTs
-                orderby customer.NAME_AG
-                select customer;
-            List<AGENT> a = customers.ToList();
-            metroComboBox1.Items.Clear();
-            for (int i = 0; i < a.Count; ++i)
-                metroComboBox1.Items.Add(a[i].NAME_AG);
+            if (r_AgToWh.Checked)
+            {
+                var customers =
+                   from customer in dbContext.AGENTs
+                   orderby customer.NAME_AG
+                   select customer;
+                List<AGENT> a = customers.ToList();
+                ListFrom.Items.Clear();
+                for (int i = 0; i < a.Count; ++i)
+                    ListFrom.Items.Add(a[i].NAME_AG);
 
-            var whs =
-                from customer in dbContext.WAREHOUSEs
-                orderby customer.NAIMEN
-                select customer;
-            List<WAREHOUSE> b = whs.ToList();
-            metroComboBox2.Items.Clear();
-            for (int i = 0; i < b.Count; ++i)
-                metroComboBox2.Items.Add(b[i].NAIMEN);
+                var whs =
+                    from customer in dbContext.WAREHOUSEs
+                    orderby customer.NAIMEN
+                    select customer;
+                List<WAREHOUSE> b = whs.ToList();
+                ListTo.Items.Clear();
+                for (int i = 0; i < b.Count; ++i)
+                    ListTo.Items.Add(b[i].NAIMEN);
 
-            metroComboBox1.Enabled = true;
-            metroComboBox2.Enabled = true;
+                ListFrom.Enabled = true;
+                ListTo.Enabled = true;
+            }
+            
         }
 
         private void metroRadioButton2_CheckedChanged(object sender, System.EventArgs e)
         {
-            var customers =
-                from customer in dbContext.AGENTs
-                orderby customer.NAME_AG
-                select customer;
-            List<AGENT> a = customers.ToList();
-            metroComboBox2.Items.Clear();
-            for (int i = 0; i < a.Count; ++i)
-                metroComboBox2.Items.Add(a[i].NAME_AG);
+            if (r_WhToAg.Checked)
+            {
+                var customers =
+                                from customer in dbContext.AGENTs
+                                orderby customer.NAME_AG
+                                select customer;
+                List<AGENT> a = customers.ToList();
+                ListTo.Items.Clear();
+                for (int i = 0; i < a.Count; ++i)
+                    ListTo.Items.Add(a[i].NAME_AG);
 
-            var whs =
-                from customer in dbContext.WAREHOUSEs
-                orderby customer.NAIMEN
-                select customer;
-            List<WAREHOUSE> b = whs.ToList();
-            metroComboBox1.Items.Clear();
-            for (int i = 0; i < b.Count; ++i)
-                metroComboBox1.Items.Add(b[i].NAIMEN);
+                var whs =
+                    from customer in dbContext.WAREHOUSEs
+                    orderby customer.NAIMEN
+                    select customer;
+                List<WAREHOUSE> b = whs.ToList();
+                ListFrom.Items.Clear();
+                for (int i = 0; i < b.Count; ++i)
+                    ListFrom.Items.Add(b[i].NAIMEN);
 
-            metroComboBox1.Enabled = true;
-            metroComboBox2.Enabled = true;
+                ListFrom.Enabled = true;
+                ListTo.Enabled = true;
+            }
+        
+        }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (r_AgToWh.Checked)
+            {
+                FbParameter parm = new FbParameter()
+                {
+                    ParameterName = "@MyID",
+                    FbDbType = FbDbType.Char,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ITEM_NAMES", parm);
+
+                textBox1.Text = (string)parm.Value;
+                //var goods = new FbParameter("GOODS", FbDbType.Char);
+                //dbContext.Database.ExecuteSqlCommand(
+                //     "EXECUTE PROCEDURE ITEM_NAMES");
+                //textBox1.Text = goods.Value.ToString();
+
+            }
+        }
+
+        private void metroComboBox4_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            
         }
     }
 }

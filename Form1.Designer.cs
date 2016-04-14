@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
-            this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
+            this.r_AgToWh = new MetroFramework.Controls.MetroRadioButton();
+            this.r_WhToAg = new MetroFramework.Controls.MetroRadioButton();
+            this.ListFrom = new MetroFramework.Controls.MetroComboBox();
+            this.ListTo = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -40,7 +40,7 @@
             this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroComboBox4 = new MetroFramework.Controls.MetroComboBox();
+            this.ItemList = new MetroFramework.Controls.MetroComboBox();
             this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.metroComboBox3 = new MetroFramework.Controls.MetroComboBox();
@@ -51,63 +51,64 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // metroRadioButton1
+            // r_AgToWh
             // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(225, 31);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(155, 15);
-            this.metroRadioButton1.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroRadioButton1.TabIndex = 0;
-            this.metroRadioButton1.Text = "AGENT --> WAREHOUSE";
-            this.metroRadioButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroRadioButton1.UseSelectable = true;
-            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
+            this.r_AgToWh.AutoSize = true;
+            this.r_AgToWh.Location = new System.Drawing.Point(225, 31);
+            this.r_AgToWh.Name = "r_AgToWh";
+            this.r_AgToWh.Size = new System.Drawing.Size(155, 15);
+            this.r_AgToWh.Style = MetroFramework.MetroColorStyle.Pink;
+            this.r_AgToWh.TabIndex = 0;
+            this.r_AgToWh.Text = "AGENT --> WAREHOUSE";
+            this.r_AgToWh.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.r_AgToWh.UseSelectable = true;
+            this.r_AgToWh.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
             // 
-            // metroRadioButton2
+            // r_WhToAg
             // 
-            this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(225, 63);
-            this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(155, 15);
-            this.metroRadioButton2.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroRadioButton2.TabIndex = 1;
-            this.metroRadioButton2.Text = "WAREHOUSE --> AGENT";
-            this.metroRadioButton2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroRadioButton2.UseSelectable = true;
-            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
+            this.r_WhToAg.AutoSize = true;
+            this.r_WhToAg.Location = new System.Drawing.Point(225, 63);
+            this.r_WhToAg.Name = "r_WhToAg";
+            this.r_WhToAg.Size = new System.Drawing.Size(155, 15);
+            this.r_WhToAg.Style = MetroFramework.MetroColorStyle.Pink;
+            this.r_WhToAg.TabIndex = 1;
+            this.r_WhToAg.Text = "WAREHOUSE --> AGENT";
+            this.r_WhToAg.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.r_WhToAg.UseSelectable = true;
+            this.r_WhToAg.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
             // 
-            // metroComboBox1
+            // ListFrom
             // 
-            this.metroComboBox1.Enabled = false;
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Items.AddRange(new object[] {
+            this.ListFrom.Enabled = false;
+            this.ListFrom.FormattingEnabled = true;
+            this.ListFrom.ItemHeight = 23;
+            this.ListFrom.Items.AddRange(new object[] {
             "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
             "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
-            this.metroComboBox1.Location = new System.Drawing.Point(483, 36);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(179, 29);
-            this.metroComboBox1.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroComboBox1.TabIndex = 2;
-            this.metroComboBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroComboBox1.UseSelectable = true;
+            this.ListFrom.Location = new System.Drawing.Point(483, 36);
+            this.ListFrom.Name = "ListFrom";
+            this.ListFrom.Size = new System.Drawing.Size(179, 29);
+            this.ListFrom.Style = MetroFramework.MetroColorStyle.Pink;
+            this.ListFrom.TabIndex = 2;
+            this.ListFrom.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ListFrom.UseSelectable = true;
+            this.ListFrom.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
             // 
-            // metroComboBox2
+            // ListTo
             // 
-            this.metroComboBox2.Enabled = false;
-            this.metroComboBox2.FormattingEnabled = true;
-            this.metroComboBox2.ItemHeight = 23;
-            this.metroComboBox2.Items.AddRange(new object[] {
+            this.ListTo.Enabled = false;
+            this.ListTo.FormattingEnabled = true;
+            this.ListTo.ItemHeight = 23;
+            this.ListTo.Items.AddRange(new object[] {
             "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
             "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
-            this.metroComboBox2.Location = new System.Drawing.Point(722, 36);
-            this.metroComboBox2.Name = "metroComboBox2";
-            this.metroComboBox2.Size = new System.Drawing.Size(176, 29);
-            this.metroComboBox2.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroComboBox2.TabIndex = 3;
-            this.metroComboBox2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroComboBox2.UseSelectable = true;
+            this.ListTo.Location = new System.Drawing.Point(722, 36);
+            this.ListTo.Name = "ListTo";
+            this.ListTo.Size = new System.Drawing.Size(176, 29);
+            this.ListTo.Style = MetroFramework.MetroColorStyle.Pink;
+            this.ListTo.TabIndex = 3;
+            this.ListTo.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ListTo.UseSelectable = true;
             // 
             // metroLabel1
             // 
@@ -246,20 +247,21 @@
             this.metroLabel5.Text = "PRICE:";
             this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // metroComboBox4
+            // ItemList
             // 
-            this.metroComboBox4.FormattingEnabled = true;
-            this.metroComboBox4.ItemHeight = 23;
-            this.metroComboBox4.Items.AddRange(new object[] {
+            this.ItemList.FormattingEnabled = true;
+            this.ItemList.ItemHeight = 23;
+            this.ItemList.Items.AddRange(new object[] {
             "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
             "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
-            this.metroComboBox4.Location = new System.Drawing.Point(74, 136);
-            this.metroComboBox4.Name = "metroComboBox4";
-            this.metroComboBox4.Size = new System.Drawing.Size(179, 29);
-            this.metroComboBox4.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroComboBox4.TabIndex = 14;
-            this.metroComboBox4.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroComboBox4.UseSelectable = true;
+            this.ItemList.Location = new System.Drawing.Point(74, 136);
+            this.ItemList.Name = "ItemList";
+            this.ItemList.Size = new System.Drawing.Size(179, 29);
+            this.ItemList.Style = MetroFramework.MetroColorStyle.Pink;
+            this.ItemList.TabIndex = 14;
+            this.ItemList.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ItemList.UseSelectable = true;
+            this.ItemList.SelectedIndexChanged += new System.EventHandler(this.metroComboBox4_SelectedIndexChanged);
             // 
             // metroCheckBox1
             // 
@@ -369,7 +371,7 @@
             this.Controls.Add(this.metroComboBox3);
             this.Controls.Add(this.metroDateTime1);
             this.Controls.Add(this.metroCheckBox1);
-            this.Controls.Add(this.metroComboBox4);
+            this.Controls.Add(this.ItemList);
             this.Controls.Add(this.metroTextBox2);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.metroTrackBar1);
@@ -378,10 +380,10 @@
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroComboBox2);
-            this.Controls.Add(this.metroComboBox1);
-            this.Controls.Add(this.metroRadioButton2);
-            this.Controls.Add(this.metroRadioButton1);
+            this.Controls.Add(this.ListTo);
+            this.Controls.Add(this.ListFrom);
+            this.Controls.Add(this.r_WhToAg);
+            this.Controls.Add(this.r_AgToWh);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -397,10 +399,10 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
-        private MetroFramework.Controls.MetroComboBox metroComboBox2;
+        private MetroFramework.Controls.MetroRadioButton r_AgToWh;
+        private MetroFramework.Controls.MetroRadioButton r_WhToAg;
+        private MetroFramework.Controls.MetroComboBox ListFrom;
+        private MetroFramework.Controls.MetroComboBox ListTo;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel3;
@@ -409,7 +411,7 @@
         private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
         private MetroFramework.Controls.MetroTextBox metroTextBox2;
         private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroComboBox metroComboBox4;
+        private MetroFramework.Controls.MetroComboBox ItemList;
         private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
         private MetroFramework.Controls.MetroDateTime metroDateTime1;
         private MetroFramework.Controls.MetroComboBox metroComboBox3;
