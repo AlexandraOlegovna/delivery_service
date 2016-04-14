@@ -6,31 +6,26 @@ namespace Delivery
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Firebird.AGENT")]
-    public partial class AGENT
+    [Table("Firebird.VEHICLE")]
+    public partial class VEHICLE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AGENT()
+        public VEHICLE()
         {
-            OPERATIONs = new HashSet<OPERATION>();
+            DELIVERies = new HashSet<DELIVERY>();
         }
 
         [Key]
         [StringLength(10)]
-        public string ID_AG { get; set; }
+        public string ID_V { get; set; }
 
         [Required]
-        [StringLength(20)]
-        public string NAME_AG { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string ADDRESS { get; set; }
-
         [StringLength(10)]
-        public string PHONE { get; set; }
+        public string NUM_V { get; set; }
+
+        public int CAPACITY { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OPERATION> OPERATIONs { get; set; }
+        public virtual ICollection<DELIVERY> DELIVERies { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MetroFramework.Forms;
 using FirebirdSql.Data.FirebirdClient;
+using System.Linq;
 
 namespace Delivery
 {
@@ -18,6 +19,15 @@ namespace Delivery
 
             // пробуем подключится
             dbContext.Database.Connection.Open();
+
+            var customers =
+                from customer in dbContext.AGENTs
+                orderby customer.NAME_AG
+                select customer;
+
+            var custs = dbContext.AGENTs.Local;
+            string ss = custs.ToString();
+            
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, System.EventArgs e)

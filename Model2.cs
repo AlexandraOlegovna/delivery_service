@@ -5,19 +5,21 @@ namespace Delivery
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class Model2 : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        public Model2()
+            : base("name=Model2")
         {
         }
 
         public virtual DbSet<AGENT> AGENTs { get; set; }
+        public virtual DbSet<DELIVERY> DELIVERies { get; set; }
         public virtual DbSet<IBE_LOG_TABLES> IBE_LOG_TABLES { get; set; }
         public virtual DbSet<LOG_FILE> LOG_FILE { get; set; }
         public virtual DbSet<OPERATION> OPERATIONs { get; set; }
         public virtual DbSet<TOVAR> TOVARs { get; set; }
         public virtual DbSet<TOVAR_WH> TOVAR_WH { get; set; }
+        public virtual DbSet<VEHICLE> VEHICLEs { get; set; }
         public virtual DbSet<WAREHOUSE> WAREHOUSEs { get; set; }
         public virtual DbSet<IBE_LOG_BLOB_FIELDS> IBE_LOG_BLOB_FIELDS { get; set; }
         public virtual DbSet<IBE_LOG_FIELDS> IBE_LOG_FIELDS { get; set; }
@@ -45,6 +47,10 @@ namespace Delivery
                 .HasMany(e => e.OPERATIONs)
                 .WithRequired(e => e.AGENT)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DELIVERY>()
+                .Property(e => e.ID_V)
+                .IsFixedLength();
 
             modelBuilder.Entity<IBE_LOG_TABLES>()
                 .Property(e => e.ID)
@@ -78,6 +84,12 @@ namespace Delivery
                 .Property(e => e.PRICE)
                 .HasPrecision(15, 2);
 
+            modelBuilder.Entity<OPERATION>()
+                .HasMany(e => e.DELIVERies)
+                .WithRequired(e => e.OPERATION)
+                .HasForeignKey(e => e.ID_OP)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<TOVAR>()
                 .Property(e => e.ID_TOVAR)
                 .IsFixedLength();
@@ -107,6 +119,19 @@ namespace Delivery
             modelBuilder.Entity<TOVAR_WH>()
                 .Property(e => e.KOL)
                 .HasPrecision(15, 2);
+
+            modelBuilder.Entity<VEHICLE>()
+                .Property(e => e.ID_V)
+                .IsFixedLength();
+
+            modelBuilder.Entity<VEHICLE>()
+                .Property(e => e.NUM_V)
+                .IsFixedLength();
+
+            modelBuilder.Entity<VEHICLE>()
+                .HasMany(e => e.DELIVERies)
+                .WithRequired(e => e.VEHICLE)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WAREHOUSE>()
                 .Property(e => e.ID_WH)
