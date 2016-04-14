@@ -1,6 +1,8 @@
 ﻿using MetroFramework.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 
 
 namespace Delivery
@@ -25,7 +27,55 @@ namespace Delivery
                 from customer in dbContext.AGENTs
                 orderby customer.NAME_AG
                 select customer;
+            bindingSource = new System.Windows.Forms.BindingSource();
+            List<AGENT> a = customers.ToList();
+            for (int i = 0; i < a.Count; ++i)
+                textBox1.Text += Win1251ToUTF8(a[i].NAME_AG);
+            bool b = true;
+
         }
+
+        private string Win1251ToUTF8(string source)
+        {
+
+            //Encoding ascii = Encoding.GetEncoding("windows-1251");
+            //Encoding unicode = Encoding.Unicode;
+
+            //// Convert the string into a byte array.
+            //byte[] asciiBytes = ascii.GetBytes(source);
+
+            //// Perform the conversion from one encoding to the other.
+            //byte[] unicodeBytes = Encoding.Convert(ascii, unicode, asciiBytes);
+
+            //// Convert the new byte[] into a char[] and then into a string.
+            //char[] unicodeChars = new char[unicode.GetCharCount(unicodeBytes, 0, unicodeBytes.Length)];
+            //unicode.GetChars(unicodeBytes, 0, unicodeBytes.Length, unicodeChars, 0);
+            //string unicodeString = new string(unicodeChars);
+            //return unicodeString;
+
+            //Encoding utf8 = Encoding.Unicode;
+            //Encoding win1251 = Encoding.GetEncoding("windows-1251");
+
+            //byte[] utf8Bytes = win1251.GetBytes(source);
+            //byte[] win1251Bytes = Encoding.Convert(win1251, utf8, utf8Bytes);
+            //source = utf8.GetString(win1251Bytes);
+            //return source;
+
+            try
+            {
+                Encoding fromEncoding = System.Text.Encoding.GetEncoding("koi8-r");
+                Encoding toEncoding = System.Text.Encoding.GetEncoding("windows-1251");
+                byte[] toEncodeAsBytes = fromEncoding.GetBytes(source);
+                string returnValue = fromEncoding.GetString(System.Text.Encoding.Convert(fromEncoding, toEncoding, toEncodeAsBytes));
+                return returnValue;
+            }
+            catch
+            {
+                return "Ошибка декодирования";
+            }
+
+        }
+
 
         private void metroCheckBox1_CheckedChanged(object sender, System.EventArgs e)
         {
