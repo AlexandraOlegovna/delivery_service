@@ -11,6 +11,7 @@ namespace Delivery
     {
 
         Model3 dbContext = new Model3();
+        FbConnection Connection;
 
         public Form1()
         {
@@ -21,87 +22,20 @@ namespace Delivery
             builder.Password = "it39";
 
             dbContext.Database.Connection.ConnectionString = builder.ConnectionString;
-
-            // пробуем подключится
+            //Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
             dbContext.Database.Connection.Open();
+            //Connection.Open();
 
-            FbParameter parm = new FbParameter()
-            {
-                ParameterName = "@MyID",
-                FbDbType = FbDbType.Array,
-                Direction = System.Data.ParameterDirection.ReturnValue,
-                Size = 100
-            };
+            //InitializeComponent();
+            //string s = dbContext.Database.Connection.ConnectionString;
+            //var builder = new FbConnectionStringBuilder(s);
+            //builder.UserID = "it39";
+            //builder.Password = "it39";
 
-            //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
+            //dbContext.Database.Connection.ConnectionString = builder.ConnectionString;
 
-            FbConnection myConnection1 = new FbConnection(dbContext.Database.Connection.ConnectionString);
-
-            myConnection1.Open();
-
-            FbCommand cmd = new FbCommand("AGENT_NAMES", myConnection1);
-            cmd.CommandText = "ITEM_NAMES";
-            //FbDataReader reader;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //reader = cmd.ExecuteReader();
-            //var x = reader[0];
-
-            FbDataAdapter da = new FbDataAdapter(cmd);
-
-            System.Data.DataTable ds = new System.Data.DataTable();
-            da.Fill(ds);
-            //var x = ds.Container.Components.Count;
-
-            //System.Data.DataTable dt = ds.Tables["result_name"];
-
-            //foreach (System.Data.DataRow row in dt.Rows)
-            //{
-            //    //manipulate your data
-            //}
-
-
-            bool b = true;
-        }
-
-        private string Win1251ToUTF8(string source)
-        {
-
-            //Encoding ascii = Encoding.GetEncoding("windows-1251");
-            //Encoding unicode = Encoding.Unicode;
-
-            //// Convert the string into a byte array.
-            //byte[] asciiBytes = ascii.GetBytes(source);
-
-            //// Perform the conversion from one encoding to the other.
-            //byte[] unicodeBytes = Encoding.Convert(ascii, unicode, asciiBytes);
-
-            //// Convert the new byte[] into a char[] and then into a string.
-            //char[] unicodeChars = new char[unicode.GetCharCount(unicodeBytes, 0, unicodeBytes.Length)];
-            //unicode.GetChars(unicodeBytes, 0, unicodeBytes.Length, unicodeChars, 0);
-            //string unicodeString = new string(unicodeChars);
-            //return unicodeString;
-
-            //Encoding utf8 = Encoding.Unicode;
-            //Encoding win1251 = Encoding.GetEncoding("windows-1251");
-
-            //byte[] utf8Bytes = win1251.GetBytes(source);
-            //byte[] win1251Bytes = Encoding.Convert(win1251, utf8, utf8Bytes);
-            //source = utf8.GetString(win1251Bytes);
-            //return source;
-
-            try
-            {
-                Encoding fromEncoding = System.Text.Encoding.GetEncoding("koi8-r");
-                Encoding toEncoding = System.Text.Encoding.GetEncoding("windows-1251");
-                byte[] toEncodeAsBytes = fromEncoding.GetBytes(source);
-                string returnValue = fromEncoding.GetString(System.Text.Encoding.Convert(fromEncoding, toEncoding, toEncodeAsBytes));
-                return returnValue;
-            }
-            catch
-            {
-                return "Ошибка декодирования";
-            }
-
+            //// пробуем подключится
+            //dbContext.Database.Connection.Open();
         }
 
 
@@ -109,17 +43,17 @@ namespace Delivery
         {
             if (metroCheckBox1.Checked)
             {
-                metroComboBox3.Enabled = true;
+                TimeList.Enabled = true;
             }
             else
             {
-                metroComboBox3.Enabled = false;
+                TimeList.Enabled = false;
             }
         }
 
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
-            metroTextBox1.Text = metroTrackBar1.Value.ToString();
+            AmountField.Text = metroTrackBar1.Value.ToString();
         }
 
 
@@ -135,12 +69,12 @@ namespace Delivery
 
         private void metroTextBox1_TextChanged(object sender, System.EventArgs e)
         {
-            if (!NotContainSymbols(metroTextBox1.Text))
-                metroTextBox1.Text = metroTextBox1.Text.Substring(0, metroTextBox1.Text.Length - 1);
-            if (metroTextBox1.Text == "")
-                metroTextBox1.Text = "0";
-            metroTextBox1.Select(metroTextBox1.Text.Length, 0);
-            int v = System.Convert.ToInt32(metroTextBox1.Text);
+            if (!NotContainSymbols(AmountField.Text))
+                AmountField.Text = AmountField.Text.Substring(0, AmountField.Text.Length - 1);
+            if (AmountField.Text == "")
+                AmountField.Text = "0";
+            AmountField.Select(AmountField.Text.Length, 0);
+            int v = System.Convert.ToInt32(AmountField.Text);
             if (v > metroTrackBar1.Maximum)
                 metroTrackBar1.Value = metroTrackBar1.Maximum;
             else
@@ -149,21 +83,21 @@ namespace Delivery
 
         private void metroTextBox1_Click(object sender, System.EventArgs e)
         {
-            metroTextBox1.SelectAll();
+            AmountField.SelectAll();
         }
 
         private void metroTextBox2_Click(object sender, System.EventArgs e)
         {
-            metroTextBox2.SelectAll();
+            PriseField.SelectAll();
         }
 
         private void metroTextBox2_TextChanged(object sender, System.EventArgs e)
         {
-            if (!NotContainSymbols(metroTextBox1.Text))
-                metroTextBox1.Text = metroTextBox1.Text.Substring(0, metroTextBox1.Text.Length - 1);
-            if (metroTextBox1.Text == "")
-                metroTextBox1.Text = "0";
-            metroTextBox1.Select(metroTextBox1.Text.Length, 0);
+            if (!NotContainSymbols(AmountField.Text))
+                AmountField.Text = AmountField.Text.Substring(0, AmountField.Text.Length - 1);
+            if (AmountField.Text == "")
+                AmountField.Text = "0";
+            AmountField.Select(AmountField.Text.Length, 0);
         }
 
         private void metroTile2_Click(object sender, System.EventArgs e)
@@ -174,8 +108,8 @@ namespace Delivery
 
         private void metroTextBox1_Leave(object sender, System.EventArgs e)
         {
-            if (System.Convert.ToInt32(metroTextBox1.Text) > metroTrackBar1.Maximum)
-                metroTextBox1.Text = metroTrackBar1.Maximum.ToString();
+            if (System.Convert.ToInt32(AmountField.Text) > metroTrackBar1.Maximum)
+                AmountField.Text = metroTrackBar1.Maximum.ToString();
         }
 
         private void metroRadioButton1_CheckedChanged(object sender, System.EventArgs e)
@@ -236,35 +170,26 @@ namespace Delivery
 
         private void metroComboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (r_AgToWh.Checked)
+            if (r_WhToAg.Checked)
             {
-                FbParameter parm = new FbParameter()
-                {
-                   ParameterName = "@MyID",
-                   FbDbType = FbDbType.Array,
-                   Direction = System.Data.ParameterDirection.Output
-                };
+                FbParameter parm = new FbParameter("Warehouse", FbDbType.Char);
+                parm.Value = ListFrom.SelectedItem.ToString();
 
-                //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
+                Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
+                Connection.Open();
 
-
-                FbCommand cmd = new FbCommand("ITEM_NAMES");
-                cmd.CommandText = "ITEM_NAMES";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                FbCommand cmd = new FbCommand("ITEMS_NAMES_WH", Connection);
+                cmd.CommandText = "ITEMS_NAMES_WH";
                 cmd.Parameters.Add(parm);
-                cmd.ExecuteNonQuery();
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                var reader = cmd.ExecuteReader();
+                ItemList.Enabled = true;
+                ItemList.Items.Clear();
+                while (reader.Read())
+                    ItemList.Items.Add(reader.GetValue(0).ToString());
 
 
-
-                //textBox1.Text = parm.Value;
-
-
-                // textBox1.Text = (string)parm.Value;
-
-                //var goods = new FbParameter("GOODS", FbDbType.Char);
-                //dbContext.Database.ExecuteSqlCommand(
-                //     "EXECUTE PROCEDURE ITEM_NAMES");
-                //textBox1.Text = goods.Value.ToString();
+                
 
             }
         }
@@ -272,6 +197,11 @@ namespace Delivery
         private void metroComboBox4_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             
+        }
+
+        private void butQuit_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
         }
     }
 }

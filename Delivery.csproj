@@ -90,7 +90,6 @@
     <Compile Include="IBE_LOG_KEYS.cs" />
     <Compile Include="IBE_LOG_TABLES.cs" />
     <Compile Include="LOG_FILE.cs" />
-    <Compile Include="Model1.cs" />
     <Compile Include="Model3.cs" />
     <Compile Include="OPERATION.cs" />
     <Compile Include="Program.cs" />
