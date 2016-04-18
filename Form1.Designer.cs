@@ -39,16 +39,15 @@
             this.AmountField = new MetroFramework.Controls.MetroTextBox();
             this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
             this.PriseField = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.ItemList = new MetroFramework.Controls.MetroComboBox();
-            this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.TimeList = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.butApply = new MetroFramework.Controls.MetroTile();
             this.butReset1 = new MetroFramework.Controls.MetroTile();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.butQuit = new MetroFramework.Controls.MetroTile();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.checkDelivery = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // r_AgToWh
@@ -231,16 +230,6 @@
             this.PriseField.TextChanged += new System.EventHandler(this.metroTextBox2_TextChanged);
             this.PriseField.Click += new System.EventHandler(this.metroTextBox2_Click);
             // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(510, 140);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(47, 19);
-            this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "PRICE:";
-            this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
             // ItemList
             // 
             this.ItemList.Enabled = false;
@@ -253,20 +242,7 @@
             this.ItemList.TabIndex = 14;
             this.ItemList.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ItemList.UseSelectable = true;
-            this.ItemList.SelectedIndexChanged += new System.EventHandler(this.metroComboBox4_SelectedIndexChanged);
-            // 
-            // metroCheckBox1
-            // 
-            this.metroCheckBox1.AutoSize = true;
-            this.metroCheckBox1.Location = new System.Drawing.Point(34, 235);
-            this.metroCheckBox1.Name = "metroCheckBox1";
-            this.metroCheckBox1.Size = new System.Drawing.Size(73, 15);
-            this.metroCheckBox1.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroCheckBox1.TabIndex = 15;
-            this.metroCheckBox1.Text = "DELIVERY";
-            this.metroCheckBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroCheckBox1.UseSelectable = true;
-            this.metroCheckBox1.CheckedChanged += new System.EventHandler(this.metroCheckBox1_CheckedChanged);
+            //this.ItemList.SelectedIndexChanged += new System.EventHandler(this.metroComboBox4_SelectedIndexChanged);
             // 
             // metroDateTime1
             // 
@@ -284,9 +260,6 @@
             this.TimeList.Enabled = false;
             this.TimeList.FormattingEnabled = true;
             this.TimeList.ItemHeight = 23;
-            this.TimeList.Items.AddRange(new object[] {
-            "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
-            "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
             this.TimeList.Location = new System.Drawing.Point(205, 228);
             this.TimeList.Name = "TimeList";
             this.TimeList.Size = new System.Drawing.Size(179, 29);
@@ -332,14 +305,6 @@
             this.butReset1.UseSelectable = true;
             this.butReset1.Click += new System.EventHandler(this.metroTile2_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(115, 300);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(489, 176);
-            this.textBox1.TabIndex = 22;
-            // 
             // butQuit
             // 
             this.butQuit.ActiveControl = null;
@@ -354,22 +319,45 @@
             this.butQuit.UseSelectable = true;
             this.butQuit.Click += new System.EventHandler(this.butQuit_Click);
             // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(522, 139);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(45, 19);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel5.TabIndex = 24;
+            this.metroLabel5.Text = "PRISE:";
+            this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // checkDelivery
+            // 
+            this.checkDelivery.AutoSize = true;
+            this.checkDelivery.Location = new System.Drawing.Point(36, 236);
+            this.checkDelivery.Name = "checkDelivery";
+            this.checkDelivery.Size = new System.Drawing.Size(73, 15);
+            this.checkDelivery.Style = MetroFramework.MetroColorStyle.Pink;
+            this.checkDelivery.TabIndex = 25;
+            this.checkDelivery.Text = "DELIVERY";
+            this.checkDelivery.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.checkDelivery.UseSelectable = true;
+            this.checkDelivery.CheckedChanged += new System.EventHandler(this.checkDelivery_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 514);
+            this.ClientSize = new System.Drawing.Size(934, 318);
+            this.Controls.Add(this.checkDelivery);
+            this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.butQuit);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.butReset1);
             this.Controls.Add(this.butApply);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.TimeList);
             this.Controls.Add(this.metroDateTime1);
-            this.Controls.Add(this.metroCheckBox1);
             this.Controls.Add(this.ItemList);
             this.Controls.Add(this.PriseField);
-            this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.metroTrackBar1);
             this.Controls.Add(this.AmountField);
             this.Controls.Add(this.metroLabel4);
@@ -388,6 +376,7 @@
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "Add New Order";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            //this.Load += new System.EventHandler(this.s);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,20 +395,15 @@
         private MetroFramework.Controls.MetroTextBox AmountField;
         private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
         private MetroFramework.Controls.MetroTextBox PriseField;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroComboBox ItemList;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
         private MetroFramework.Controls.MetroDateTime metroDateTime1;
         private MetroFramework.Controls.MetroComboBox TimeList;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTile butApply;
         private MetroFramework.Controls.MetroTile butReset1;
-        private System.Windows.Forms.TextBox textBox1;
 
 
 
-
-        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.ToolStripButton btnAdd;
@@ -430,6 +414,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnExit;
         private MetroFramework.Controls.MetroTile butQuit;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroCheckBox checkDelivery;
     }
 }
 

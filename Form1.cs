@@ -39,18 +39,6 @@ namespace Delivery
         }
 
 
-        private void metroCheckBox1_CheckedChanged(object sender, System.EventArgs e)
-        {
-            if (metroCheckBox1.Checked)
-            {
-                TimeList.Enabled = true;
-            }
-            else
-            {
-                TimeList.Enabled = false;
-            }
-        }
-
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
             AmountField.Text = metroTrackBar1.Value.ToString();
@@ -172,9 +160,9 @@ namespace Delivery
         {
             if (r_WhToAg.Checked)
             {
+
                 FbParameter parm = new FbParameter("Warehouse", FbDbType.Char);
                 parm.Value = ListFrom.SelectedItem.ToString();
-
                 Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
                 Connection.Open();
 
@@ -188,20 +176,26 @@ namespace Delivery
                 while (reader.Read())
                     ItemList.Items.Add(reader.GetValue(0).ToString());
 
-
-                
-
             }
-        }
-
-        private void metroComboBox4_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            
-        }
+        } 
+        
 
         private void butQuit_Click(object sender, System.EventArgs e)
         {
             this.Close();
         }
+
+        private void checkDelivery_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (checkDelivery.Checked)
+            {
+                TimeList.Enabled = true;
+            }
+            else
+            {
+                TimeList.Enabled = false;
+            }
+        }
+        
     }
 }
