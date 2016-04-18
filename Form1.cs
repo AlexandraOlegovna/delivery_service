@@ -211,16 +211,17 @@ namespace Delivery
         {
             if (r_AgToWh.Checked)
             {
-                FbParameter parm = new FbParameter()
-                {
-                    ParameterName = "@MyID",
-                    FbDbType = FbDbType.Char,
-                    Direction = System.Data.ParameterDirection.Output
-                };
 
-                dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ITEM_NAMES", parm);
+                //FbParameter parm = new FbParameter()
+                //{
+                //    FbDbType = FbDbType.VarChar,
+                //    Direction = System.Data.ParameterDirection.Output
+                //};
 
-                textBox1.Text = (string)parm.Value;
+                //dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ITEM_NAMES", parm);
+
+                //var p = parm.SourceColumn;
+                //textBox1.Text = parm.Value.ToString();
                 //var goods = new FbParameter("GOODS", FbDbType.Char);
                 //dbContext.Database.ExecuteSqlCommand(
                 //     "EXECUTE PROCEDURE ITEM_NAMES");

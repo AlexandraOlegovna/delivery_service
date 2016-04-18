@@ -82,9 +82,6 @@
             this.ListFrom.Enabled = false;
             this.ListFrom.FormattingEnabled = true;
             this.ListFrom.ItemHeight = 23;
-            this.ListFrom.Items.AddRange(new object[] {
-            "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
-            "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
             this.ListFrom.Location = new System.Drawing.Point(483, 36);
             this.ListFrom.Name = "ListFrom";
             this.ListFrom.Size = new System.Drawing.Size(179, 29);
@@ -99,9 +96,6 @@
             this.ListTo.Enabled = false;
             this.ListTo.FormattingEnabled = true;
             this.ListTo.ItemHeight = 23;
-            this.ListTo.Items.AddRange(new object[] {
-            "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
-            "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
             this.ListTo.Location = new System.Drawing.Point(722, 36);
             this.ListTo.Name = "ListTo";
             this.ListTo.Size = new System.Drawing.Size(176, 29);
@@ -251,9 +245,6 @@
             // 
             this.ItemList.FormattingEnabled = true;
             this.ItemList.ItemHeight = 23;
-            this.ItemList.Items.AddRange(new object[] {
-            "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
-            "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
             this.ItemList.Location = new System.Drawing.Point(74, 136);
             this.ItemList.Name = "ItemList";
             this.ItemList.Size = new System.Drawing.Size(179, 29);
@@ -292,9 +283,6 @@
             this.metroComboBox3.Enabled = false;
             this.metroComboBox3.FormattingEnabled = true;
             this.metroComboBox3.ItemHeight = 23;
-            this.metroComboBox3.Items.AddRange(new object[] {
-            "ЧЛЕН ПОБОЛЬШЕ(БЕЗ ВОЛОС)",
-            "ЧЛЕН ПОМЕНЬШЕ(ГАДКИЙ)"});
             this.metroComboBox3.Location = new System.Drawing.Point(205, 228);
             this.metroComboBox3.Name = "metroComboBox3";
             this.metroComboBox3.Size = new System.Drawing.Size(179, 29);
