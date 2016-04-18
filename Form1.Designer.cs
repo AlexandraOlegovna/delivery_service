@@ -37,10 +37,10 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.AmountField = new MetroFramework.Controls.MetroTextBox();
-            this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
+            this.AmountTrack = new MetroFramework.Controls.MetroTrackBar();
             this.PriseField = new MetroFramework.Controls.MetroTextBox();
             this.ItemList = new MetroFramework.Controls.MetroComboBox();
-            this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
+            this.DateTime = new MetroFramework.Controls.MetroDateTime();
             this.TimeList = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.butApply = new MetroFramework.Controls.MetroTile();
@@ -180,19 +180,19 @@
             this.AmountField.Click += new System.EventHandler(this.metroTextBox1_Click);
             this.AmountField.Leave += new System.EventHandler(this.metroTextBox1_Leave);
             // 
-            // metroTrackBar1
+            // AmountTrack
             // 
-            this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
-            this.metroTrackBar1.Location = new System.Drawing.Point(314, 156);
-            this.metroTrackBar1.Name = "metroTrackBar1";
-            this.metroTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.metroTrackBar1.Size = new System.Drawing.Size(137, 23);
-            this.metroTrackBar1.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroTrackBar1.TabIndex = 10;
-            this.metroTrackBar1.Text = "metroTrackBar1";
-            this.metroTrackBar1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTrackBar1.Value = 0;
-            this.metroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
+            this.AmountTrack.BackColor = System.Drawing.Color.Transparent;
+            this.AmountTrack.Location = new System.Drawing.Point(314, 156);
+            this.AmountTrack.Name = "AmountTrack";
+            this.AmountTrack.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.AmountTrack.Size = new System.Drawing.Size(137, 23);
+            this.AmountTrack.Style = MetroFramework.MetroColorStyle.Pink;
+            this.AmountTrack.TabIndex = 10;
+            this.AmountTrack.Text = "metroTrackBar1";
+            this.AmountTrack.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.AmountTrack.Value = 0;
+            this.AmountTrack.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
             // 
             // PriseField
             // 
@@ -242,18 +242,18 @@
             this.ItemList.TabIndex = 14;
             this.ItemList.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ItemList.UseSelectable = true;
-            //this.ItemList.SelectedIndexChanged += new System.EventHandler(this.metroComboBox4_SelectedIndexChanged);
+            this.ItemList.SelectedIndexChanged += new System.EventHandler(this.ItemList_SelectedIndexChanged);
             // 
-            // metroDateTime1
+            // DateTime
             // 
-            this.metroDateTime1.Location = new System.Drawing.Point(722, 138);
-            this.metroDateTime1.MinDate = new System.DateTime(2016, 4, 12, 0, 0, 0, 0);
-            this.metroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
-            this.metroDateTime1.Name = "metroDateTime1";
-            this.metroDateTime1.Size = new System.Drawing.Size(176, 29);
-            this.metroDateTime1.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroDateTime1.TabIndex = 16;
-            this.metroDateTime1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DateTime.Location = new System.Drawing.Point(722, 138);
+            this.DateTime.MinDate = new System.DateTime(2016, 4, 12, 0, 0, 0, 0);
+            this.DateTime.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DateTime.Name = "DateTime";
+            this.DateTime.Size = new System.Drawing.Size(176, 29);
+            this.DateTime.Style = MetroFramework.MetroColorStyle.Pink;
+            this.DateTime.TabIndex = 16;
+            this.DateTime.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // TimeList
             // 
@@ -355,10 +355,10 @@
             this.Controls.Add(this.butApply);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.TimeList);
-            this.Controls.Add(this.metroDateTime1);
+            this.Controls.Add(this.DateTime);
             this.Controls.Add(this.ItemList);
             this.Controls.Add(this.PriseField);
-            this.Controls.Add(this.metroTrackBar1);
+            this.Controls.Add(this.AmountTrack);
             this.Controls.Add(this.AmountField);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel3);
@@ -376,7 +376,6 @@
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "Add New Order";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
-            //this.Load += new System.EventHandler(this.s);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,10 +392,10 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox AmountField;
-        private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
+        private MetroFramework.Controls.MetroTrackBar AmountTrack;
         private MetroFramework.Controls.MetroTextBox PriseField;
         private MetroFramework.Controls.MetroComboBox ItemList;
-        private MetroFramework.Controls.MetroDateTime metroDateTime1;
+        private MetroFramework.Controls.MetroDateTime DateTime;
         private MetroFramework.Controls.MetroComboBox TimeList;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTile butApply;
