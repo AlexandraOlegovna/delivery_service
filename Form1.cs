@@ -25,14 +25,41 @@ namespace Delivery
             // пробуем подключится
             dbContext.Database.Connection.Open();
 
-            //var custs = dbContext.AGENTs.Local;
-            //string ss = custs.ToString();
-            //bindingSource = new System.Windows.Forms.BindingSource();
-            //bindingSource.DataSource = customers.ToBindingList();
+            FbParameter parm = new FbParameter()
+            {
+                ParameterName = "@MyID",
+                FbDbType = FbDbType.Array,
+                Direction = System.Data.ParameterDirection.ReturnValue,
+                Size = 100
+            };
+
+            //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
+
+            FbConnection myConnection1 = new FbConnection(dbContext.Database.Connection.ConnectionString);
+
+            myConnection1.Open();
+
+            FbCommand cmd = new FbCommand("AGENT_NAMES", myConnection1);
+            cmd.CommandText = "ITEM_NAMES";
+            //FbDataReader reader;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //reader = cmd.ExecuteReader();
+            //var x = reader[0];
+
+            FbDataAdapter da = new FbDataAdapter(cmd);
+
+            System.Data.DataTable ds = new System.Data.DataTable();
+            da.Fill(ds);
+            //var x = ds.Container.Components.Count;
+
+            //System.Data.DataTable dt = ds.Tables["result_name"];
+
+            //foreach (System.Data.DataRow row in dt.Rows)
+            //{
+            //    //manipulate your data
+            //}
 
 
-            //for (int i = 0; i < a.Count; ++i)
-            //    textBox1.Text += a[i].NOMENCLATURE.Replace(" ", string.Empty);
             bool b = true;
         }
 
@@ -213,14 +240,27 @@ namespace Delivery
             {
                 FbParameter parm = new FbParameter()
                 {
-                    ParameterName = "@MyID",
-                    FbDbType = FbDbType.Char,
-                    Direction = System.Data.ParameterDirection.Output
+                   ParameterName = "@MyID",
+                   FbDbType = FbDbType.Array,
+                   Direction = System.Data.ParameterDirection.Output
                 };
 
-                dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ITEM_NAMES", parm);
+                //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
 
-                textBox1.Text = (string)parm.Value;
+
+                FbCommand cmd = new FbCommand("ITEM_NAMES");
+                cmd.CommandText = "ITEM_NAMES";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add(parm);
+                cmd.ExecuteNonQuery();
+
+
+
+                //textBox1.Text = parm.Value;
+
+
+                // textBox1.Text = (string)parm.Value;
+
                 //var goods = new FbParameter("GOODS", FbDbType.Char);
                 //dbContext.Database.ExecuteSqlCommand(
                 //     "EXECUTE PROCEDURE ITEM_NAMES");
