@@ -26,6 +26,43 @@ namespace Delivery
 
             dbContext.Database.Connection.ConnectionString = builder.ConnectionString;
             dbContext.Database.Connection.Open();
+
+            FbParameter parm = new FbParameter()
+            {
+                ParameterName = "@MyID",
+                FbDbType = FbDbType.Array,
+                Direction = System.Data.ParameterDirection.ReturnValue,
+                Size = 100
+            };
+
+            //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
+
+            FbConnection myConnection1 = new FbConnection(dbContext.Database.Connection.ConnectionString);
+
+            myConnection1.Open();
+
+            FbCommand cmd = new FbCommand("ITEM_NAMES", myConnection1);
+            cmd.CommandText = "ITEM_NAMES";
+            //FbDataReader reader;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //reader = cmd.ExecuteReader();
+            //var x = reader[0];
+
+            FbDataAdapter da = new FbDataAdapter(cmd);
+
+            System.Data.DataTable ds = new System.Data.DataTable();
+            da.Fill(ds);
+            //var x = ds.Container.Components.Count;
+
+            //System.Data.DataTable dt = ds.Tables["result_name"];
+
+            //foreach (System.Data.DataRow row in dt.Rows)
+            //{
+            //    //manipulate your data
+            //}
+
+
+            bool b = true;
         }
 
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
