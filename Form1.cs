@@ -39,7 +39,7 @@ namespace Delivery
 
             myConnection1.Open();
 
-            FbCommand cmd = new FbCommand("AGENT_NAMES", myConnection1);
+            FbCommand cmd = new FbCommand("ITEM_NAMES", myConnection1);
             cmd.CommandText = "ITEM_NAMES";
             //FbDataReader reader;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
