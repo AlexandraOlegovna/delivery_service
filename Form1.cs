@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Delivery
 {
@@ -36,7 +37,7 @@ namespace Delivery
                    select agent;
             List<AGENT> a = agents.ToList();
             for (int i = 0; i < a.Count; ++i)
-               Agents.Add(a[i].NAME_AG);
+                Agents.Add(a[i].NAME_AG);
 
             var whs =
                     from warehouse in dbContext.WAREHOUSEs
@@ -44,7 +45,7 @@ namespace Delivery
                     select warehouse;
             List<WAREHOUSE> b = whs.ToList();
             for (int i = 0; i < b.Count; ++i)
-               Warehouses.Add(b[i].NAIMEN);
+                Warehouses.Add(b[i].NAIMEN);
 
             var items =
                     from item in dbContext.TOVARs
@@ -55,9 +56,9 @@ namespace Delivery
             {
                 Items.Add(t[i].NOMENCLATURE);
                 ItemsVolume.Add(t[i].NOMENCLATURE, t[i].VOLUME);
-            }
-
         }
+    }
+            
 
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
@@ -292,6 +293,20 @@ namespace Delivery
             else
                 resultVehicle.Text = "VEHICLE №" + result; 
             Connection.Close();
+        }
+
+        private void r_AgToWh_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            int thickness = 2;//it's up to you
+            int halfThickness = thickness / 2;
+            using (System.Drawing.Pen p = new Pen(Color.FromArgb(231, 113, 189), thickness))
+            {
+                e.Graphics.DrawRectangle(p, new Rectangle(halfThickness,
+                                                          halfThickness,
+                                                          panel1.ClientSize.Width - thickness,
+                                                          panel1.ClientSize.Height - thickness));
+
+            }
         }
     }
 }

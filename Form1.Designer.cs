@@ -49,17 +49,21 @@
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.checkDelivery = new MetroFramework.Controls.MetroCheckBox();
             this.resultVehicle = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // r_AgToWh
             // 
             this.r_AgToWh.AutoSize = true;
-            this.r_AgToWh.Location = new System.Drawing.Point(225, 31);
+            this.r_AgToWh.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.r_AgToWh.Location = new System.Drawing.Point(11, 9);
             this.r_AgToWh.Name = "r_AgToWh";
-            this.r_AgToWh.Size = new System.Drawing.Size(155, 15);
+            this.r_AgToWh.Size = new System.Drawing.Size(218, 25);
             this.r_AgToWh.Style = MetroFramework.MetroColorStyle.Pink;
             this.r_AgToWh.TabIndex = 0;
-            this.r_AgToWh.Text = "AGENT --> WAREHOUSE";
+            this.r_AgToWh.Text = "AGENT ➔ WAREHOUSE";
             this.r_AgToWh.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.r_AgToWh.UseSelectable = true;
             this.r_AgToWh.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
@@ -67,12 +71,13 @@
             // r_WhToAg
             // 
             this.r_WhToAg.AutoSize = true;
-            this.r_WhToAg.Location = new System.Drawing.Point(225, 63);
+            this.r_WhToAg.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.r_WhToAg.Location = new System.Drawing.Point(11, 40);
             this.r_WhToAg.Name = "r_WhToAg";
-            this.r_WhToAg.Size = new System.Drawing.Size(155, 15);
+            this.r_WhToAg.Size = new System.Drawing.Size(218, 25);
             this.r_WhToAg.Style = MetroFramework.MetroColorStyle.Pink;
             this.r_WhToAg.TabIndex = 1;
-            this.r_WhToAg.Text = "WAREHOUSE --> AGENT";
+            this.r_WhToAg.Text = "WAREHOUSE ➔ AGENT";
             this.r_WhToAg.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.r_WhToAg.UseSelectable = true;
             this.r_WhToAg.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
@@ -82,7 +87,7 @@
             this.ListFrom.Enabled = false;
             this.ListFrom.FormattingEnabled = true;
             this.ListFrom.ItemHeight = 23;
-            this.ListFrom.Location = new System.Drawing.Point(483, 36);
+            this.ListFrom.Location = new System.Drawing.Point(95, 118);
             this.ListFrom.Name = "ListFrom";
             this.ListFrom.Size = new System.Drawing.Size(179, 29);
             this.ListFrom.Style = MetroFramework.MetroColorStyle.Pink;
@@ -96,7 +101,7 @@
             this.ListTo.Enabled = false;
             this.ListTo.FormattingEnabled = true;
             this.ListTo.ItemHeight = 23;
-            this.ListTo.Location = new System.Drawing.Point(722, 36);
+            this.ListTo.Location = new System.Drawing.Point(392, 118);
             this.ListTo.Name = "ListTo";
             this.ListTo.Size = new System.Drawing.Size(176, 29);
             this.ListTo.Style = MetroFramework.MetroColorStyle.Pink;
@@ -107,9 +112,10 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(427, 39);
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.Location = new System.Drawing.Point(29, 119);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(50, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(63, 25);
             this.metroLabel1.TabIndex = 4;
             this.metroLabel1.Text = "FROM:";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -117,9 +123,10 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(686, 39);
+            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel2.Location = new System.Drawing.Point(332, 119);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(30, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(39, 25);
             this.metroLabel2.TabIndex = 5;
             this.metroLabel2.Text = "TO:";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -127,9 +134,10 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(27, 138);
+            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel3.Location = new System.Drawing.Point(29, 211);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(41, 19);
+            this.metroLabel3.Size = new System.Drawing.Size(53, 25);
             this.metroLabel3.TabIndex = 7;
             this.metroLabel3.Text = "ITEM:";
             this.metroLabel3.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -138,9 +146,10 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Enabled = false;
-            this.metroLabel4.Location = new System.Drawing.Point(314, 126);
+            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel4.Location = new System.Drawing.Point(332, 195);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(90, 25);
             this.metroLabel4.TabIndex = 8;
             this.metroLabel4.Text = "AMOUNT:";
             this.metroLabel4.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -151,7 +160,7 @@
             // 
             // 
             this.AmountField.CustomButton.Image = null;
-            this.AmountField.CustomButton.Location = new System.Drawing.Point(39, 1);
+            this.AmountField.CustomButton.Location = new System.Drawing.Point(107, 1);
             this.AmountField.CustomButton.Name = "";
             this.AmountField.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.AmountField.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -162,7 +171,7 @@
             this.AmountField.Enabled = false;
             this.AmountField.Lines = new string[] {
         "1"};
-            this.AmountField.Location = new System.Drawing.Point(390, 124);
+            this.AmountField.Location = new System.Drawing.Point(439, 197);
             this.AmountField.MaxLength = 32767;
             this.AmountField.Name = "AmountField";
             this.AmountField.PasswordChar = '\0';
@@ -170,7 +179,7 @@
             this.AmountField.SelectedText = "";
             this.AmountField.SelectionLength = 0;
             this.AmountField.SelectionStart = 0;
-            this.AmountField.Size = new System.Drawing.Size(61, 23);
+            this.AmountField.Size = new System.Drawing.Size(129, 23);
             this.AmountField.Style = MetroFramework.MetroColorStyle.Pink;
             this.AmountField.TabIndex = 9;
             this.AmountField.Text = "1";
@@ -187,11 +196,11 @@
             // 
             this.AmountTrack.BackColor = System.Drawing.Color.Transparent;
             this.AmountTrack.Enabled = false;
-            this.AmountTrack.Location = new System.Drawing.Point(314, 156);
+            this.AmountTrack.Location = new System.Drawing.Point(342, 226);
             this.AmountTrack.Minimum = 1;
             this.AmountTrack.Name = "AmountTrack";
             this.AmountTrack.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.AmountTrack.Size = new System.Drawing.Size(137, 23);
+            this.AmountTrack.Size = new System.Drawing.Size(226, 23);
             this.AmountTrack.Style = MetroFramework.MetroColorStyle.Pink;
             this.AmountTrack.TabIndex = 10;
             this.AmountTrack.Text = "metroTrackBar1";
@@ -205,7 +214,7 @@
             // 
             // 
             this.PriseField.CustomButton.Image = null;
-            this.PriseField.CustomButton.Location = new System.Drawing.Point(38, 1);
+            this.PriseField.CustomButton.Location = new System.Drawing.Point(157, 1);
             this.PriseField.CustomButton.Name = "";
             this.PriseField.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.PriseField.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -216,7 +225,7 @@
             this.PriseField.Enabled = false;
             this.PriseField.Lines = new string[] {
         "0"};
-            this.PriseField.Location = new System.Drawing.Point(573, 138);
+            this.PriseField.Location = new System.Drawing.Point(95, 291);
             this.PriseField.MaxLength = 32767;
             this.PriseField.Name = "PriseField";
             this.PriseField.PasswordChar = '\0';
@@ -224,7 +233,7 @@
             this.PriseField.SelectedText = "";
             this.PriseField.SelectionLength = 0;
             this.PriseField.SelectionStart = 0;
-            this.PriseField.Size = new System.Drawing.Size(60, 23);
+            this.PriseField.Size = new System.Drawing.Size(179, 23);
             this.PriseField.Style = MetroFramework.MetroColorStyle.Pink;
             this.PriseField.TabIndex = 12;
             this.PriseField.Text = "0";
@@ -241,7 +250,7 @@
             this.ItemList.Enabled = false;
             this.ItemList.FormattingEnabled = true;
             this.ItemList.ItemHeight = 23;
-            this.ItemList.Location = new System.Drawing.Point(74, 136);
+            this.ItemList.Location = new System.Drawing.Point(95, 209);
             this.ItemList.Name = "ItemList";
             this.ItemList.Size = new System.Drawing.Size(179, 29);
             this.ItemList.Style = MetroFramework.MetroColorStyle.Pink;
@@ -253,7 +262,7 @@
             // DateTime
             // 
             this.DateTime.Enabled = false;
-            this.DateTime.Location = new System.Drawing.Point(722, 138);
+            this.DateTime.Location = new System.Drawing.Point(392, 290);
             this.DateTime.MinDate = new System.DateTime(2016, 4, 12, 0, 0, 0, 0);
             this.DateTime.MinimumSize = new System.Drawing.Size(0, 29);
             this.DateTime.Name = "DateTime";
@@ -283,7 +292,7 @@
             "20:00",
             "21:00",
             "22:00"});
-            this.TimeList.Location = new System.Drawing.Point(205, 228);
+            this.TimeList.Location = new System.Drawing.Point(392, 369);
             this.TimeList.Name = "TimeList";
             this.TimeList.Size = new System.Drawing.Size(179, 29);
             this.TimeList.Style = MetroFramework.MetroColorStyle.Pink;
@@ -295,9 +304,10 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(149, 232);
+            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel6.Location = new System.Drawing.Point(328, 369);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(41, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(53, 25);
             this.metroLabel6.TabIndex = 18;
             this.metroLabel6.Text = "TIME:";
             this.metroLabel6.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -305,41 +315,44 @@
             // butApply
             // 
             this.butApply.ActiveControl = null;
-            this.butApply.Location = new System.Drawing.Point(599, 271);
+            this.butApply.Location = new System.Drawing.Point(242, 489);
             this.butApply.Name = "butApply";
-            this.butApply.Size = new System.Drawing.Size(129, 23);
+            this.butApply.Size = new System.Drawing.Size(129, 30);
             this.butApply.Style = MetroFramework.MetroColorStyle.Pink;
             this.butApply.TabIndex = 19;
             this.butApply.Text = "APPLY";
             this.butApply.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.butApply.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.butApply.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.butApply.UseSelectable = true;
             // 
             // butReset1
             // 
             this.butReset1.ActiveControl = null;
-            this.butReset1.Location = new System.Drawing.Point(428, 271);
+            this.butReset1.Location = new System.Drawing.Point(41, 489);
             this.butReset1.Name = "butReset1";
-            this.butReset1.Size = new System.Drawing.Size(129, 23);
+            this.butReset1.Size = new System.Drawing.Size(129, 30);
             this.butReset1.Style = MetroFramework.MetroColorStyle.Pink;
             this.butReset1.TabIndex = 20;
             this.butReset1.Text = "RESET";
             this.butReset1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.butReset1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.butReset1.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.butReset1.UseSelectable = true;
             this.butReset1.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // butQuit
             // 
             this.butQuit.ActiveControl = null;
-            this.butQuit.Location = new System.Drawing.Point(760, 271);
+            this.butQuit.Location = new System.Drawing.Point(437, 489);
             this.butQuit.Name = "butQuit";
-            this.butQuit.Size = new System.Drawing.Size(129, 23);
+            this.butQuit.Size = new System.Drawing.Size(129, 30);
             this.butQuit.Style = MetroFramework.MetroColorStyle.Pink;
             this.butQuit.TabIndex = 23;
             this.butQuit.Text = "QUIT";
             this.butQuit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.butQuit.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.butQuit.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.butQuit.UseSelectable = true;
             this.butQuit.Click += new System.EventHandler(this.butQuit_Click);
             // 
@@ -347,9 +360,10 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.Enabled = false;
-            this.metroLabel5.Location = new System.Drawing.Point(522, 139);
+            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel5.Location = new System.Drawing.Point(29, 289);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(45, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(58, 25);
             this.metroLabel5.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel5.TabIndex = 24;
             this.metroLabel5.Text = "PRISE:";
@@ -358,9 +372,10 @@
             // checkDelivery
             // 
             this.checkDelivery.AutoSize = true;
-            this.checkDelivery.Location = new System.Drawing.Point(36, 236);
+            this.checkDelivery.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.checkDelivery.Location = new System.Drawing.Point(37, 369);
             this.checkDelivery.Name = "checkDelivery";
-            this.checkDelivery.Size = new System.Drawing.Size(73, 15);
+            this.checkDelivery.Size = new System.Drawing.Size(104, 25);
             this.checkDelivery.Style = MetroFramework.MetroColorStyle.Pink;
             this.checkDelivery.TabIndex = 25;
             this.checkDelivery.Text = "DELIVERY";
@@ -371,20 +386,50 @@
             // resultVehicle
             // 
             this.resultVehicle.AutoSize = true;
+            this.resultVehicle.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.resultVehicle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.resultVehicle.Location = new System.Drawing.Point(428, 232);
+            this.resultVehicle.Location = new System.Drawing.Point(242, 416);
             this.resultVehicle.Name = "resultVehicle";
-            this.resultVehicle.Size = new System.Drawing.Size(37, 19);
+            this.resultVehicle.Size = new System.Drawing.Size(48, 25);
             this.resultVehicle.Style = MetroFramework.MetroColorStyle.Pink;
             this.resultVehicle.TabIndex = 26;
             this.resultVehicle.Text = "TEST";
             this.resultVehicle.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.resultVehicle.Visible = false;
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Enabled = false;
+            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel7.Location = new System.Drawing.Point(328, 290);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(57, 25);
+            this.metroLabel7.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel7.TabIndex = 27;
+            this.metroLabel7.Text = "DATE:";
+            this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.r_WhToAg);
+            this.panel1.Controls.Add(this.r_AgToWh);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.Location = new System.Drawing.Point(332, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(239, 74);
+            this.panel1.TabIndex = 28;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.r_AgToWh_Paint);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 318);
+            this.ClientSize = new System.Drawing.Size(614, 549);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.resultVehicle);
             this.Controls.Add(this.checkDelivery);
             this.Controls.Add(this.metroLabel5);
@@ -404,8 +449,6 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.ListTo);
             this.Controls.Add(this.ListFrom);
-            this.Controls.Add(this.r_WhToAg);
-            this.Controls.Add(this.r_AgToWh);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -414,6 +457,8 @@
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "Add New Order";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,6 +499,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroCheckBox checkDelivery;
         private MetroFramework.Controls.MetroLabel resultVehicle;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
