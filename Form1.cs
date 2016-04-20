@@ -215,6 +215,8 @@ namespace Delivery
 
         private void reset() {
             ItemList.Enabled = true;
+            ListFrom.Enabled = true;
+            ListTo.Enabled = true;
             AmountField.Enabled = false;
             PriseField.Enabled = false;
             DateTime.Enabled = false;
@@ -230,6 +232,7 @@ namespace Delivery
             DateTime.Value = System.DateTime.Now;
             checkDelivery.Checked = false;
             resultVehicle.Visible = false;
+            ResultLabel.Visible = false;
         }
 
         private void ItemList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -303,13 +306,13 @@ namespace Delivery
                 if (result == "null")
                 {
                     resultVehicle.ForeColor = Color.Red;
-                    resultVehicle.Text = "UNSUCCESS";
+                    resultVehicle.Text = "FAIL";
                 }
                 else
                 {
                     num_auto = result;
                     resultVehicle.ForeColor = Color.Green;
-                    resultVehicle.Text = "SUCCESS";
+                    resultVehicle.Text = "OK";
                 }
                 Connection.Close();  
             }
@@ -339,9 +342,9 @@ namespace Delivery
         {
             string Type_OP = "";
             if (r_AgToWh.Checked)
-                Type_OP = "A";
-            if (r_WhToAg.Checked)
                 Type_OP = "R";
+            if (r_WhToAg.Checked)
+                Type_OP = "A";
 
             string From = ListFrom.SelectedItem.ToString();
             string To = ListTo.SelectedItem.ToString();
@@ -370,11 +373,13 @@ namespace Delivery
                 FbParameter DELIV = new FbParameter("DELIV", FbDbType.Char);
                 GOODS.Value = Item;
                 AMOUNT.Value = Amount;
-                if (r_AgToWh.Checked) {
+                if (r_AgToWh.Checked)
+                {
                     AGENT_NAME.Value = From;
                     WH_NAME.Value = To;
                 }
-                if (r_WhToAg.Checked) {
+                if (r_WhToAg.Checked)
+                {
                     AGENT_NAME.Value = To;
                     WH_NAME.Value = From;
                 }
@@ -403,13 +408,18 @@ namespace Delivery
                 //cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 //var reader = cmd.ExecuteReader();
                 dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ADD_ORDER(@GOODS, @AMOUNT, @AGENT_NAME, @WH_NAME, @TYPE_OP, @PRICE, @DEL_TIME, @DEL_DATE, @DELIV)", GOODS, AMOUNT, AGENT_NAME, WH_NAME, TYPE_OP, PRICE, DEL_TIME, DEL_DATE, DELIV);
-                
 
-                ResultLabel.Text = "SUCCESS";
+                ResultLabel.Visible = true;
+                ResultLabel.ForeColor = Color.Green;
+                ResultLabel.Text = "Your order has been successfully submitted";
             }
 
             else
-                ResultLabel.Text = "UNSUCCESS";
+            {
+                ResultLabel.Visible = true;
+                ResultLabel.ForeColor = Color.Red;
+                ResultLabel.Text = "Your order has not been submitted. Correct fields and try again";
+            }
 
         }
     }

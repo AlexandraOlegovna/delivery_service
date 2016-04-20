@@ -430,11 +430,13 @@
             this.ResultLabel.AutoSize = true;
             this.ResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ResultLabel.ForeColor = System.Drawing.Color.Red;
-            this.ResultLabel.Location = new System.Drawing.Point(228, 511);
+            this.ResultLabel.Location = new System.Drawing.Point(143, 499);
             this.ResultLabel.Name = "ResultLabel";
             this.ResultLabel.Size = new System.Drawing.Size(46, 17);
             this.ResultLabel.TabIndex = 30;
             this.ResultLabel.Text = "label1";
+            this.ResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ResultLabel.Visible = false;
             // 
             // Form1
             // 
