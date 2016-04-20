@@ -238,6 +238,7 @@ namespace Delivery
             ResultLabel.Visible = false;
             butApply.Enabled = false;
             butReset1.Enabled = false;
+            num_auto = "";
         }
 
         private void ItemList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -275,7 +276,7 @@ namespace Delivery
         private void TimeList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             num_auto = "";
-            if (TimeList.SelectedItem != null)
+            if ((TimeList.SelectedItem != null) && (ItemList.SelectedItem != null))
             {
 
                 FbParameter parm1 = new FbParameter("Volume", FbDbType.Integer);
@@ -283,7 +284,6 @@ namespace Delivery
                 FbParameter parm3 = new FbParameter("Time", FbDbType.Time);
                 parm1.Value = ItemsVolume[ItemList.SelectedItem.ToString()] * System.Convert.ToInt32(AmountField.Text);
                 parm2.Value = DateTime.Value.Date;
-                //string tmp = TimeList.SelectedItem.ToString();
 
                 parm3.Value = System.TimeSpan.Parse(TimeList.SelectedItem.ToString()); //new System.TimeSpan(System.Convert.ToInt32(tmp.Remove(tmp.IndexOf(':'))), 0, 0);
                 Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
@@ -351,11 +351,11 @@ namespace Delivery
             if (r_WhToAg.Checked)
                 Type_OP = "A";
 
-            string From = ListFrom.SelectedItem.ToString();
-            string To = ListTo.SelectedItem.ToString();
-            string Item = ItemList.SelectedItem.ToString();
+            var From = ListFrom.SelectedItem;
+            var To = ListTo.SelectedItem;
+            var Item = ItemList.SelectedItem;
 
-            if ((Type_OP != "") && (From != "") && (To != "") && (Item != "") && (((checkDelivery.Checked) && (num_auto != "")) || (!checkDelivery.Checked)))
+            if ((Type_OP != "") && (From != null) && (To != null) && (Item != null) && (((checkDelivery.Checked) && (num_auto != "")) || (!checkDelivery.Checked)))
             {
                 int Amount = System.Convert.ToInt32(AmountField.Text);
                 int Prise = System.Convert.ToInt32(PriseField.Text);
@@ -380,13 +380,13 @@ namespace Delivery
                 AMOUNT.Value = Amount;
                 if (r_AgToWh.Checked)
                 {
-                    AGENT_NAME.Value = From;
-                    WH_NAME.Value = To;
+                    AGENT_NAME.Value = From.ToString();
+                    WH_NAME.Value = To.ToString();
                 }
                 if (r_WhToAg.Checked)
                 {
-                    AGENT_NAME.Value = To;
-                    WH_NAME.Value = From;
+                    AGENT_NAME.Value = To.ToString();
+                    WH_NAME.Value = From.ToString();
                 }
                 PRICE.Value = Prise;
                 DEL_TIME.Value = Del_time;
@@ -399,40 +399,27 @@ namespace Delivery
                 Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
                 Connection.Open();
 
-                //FbCommand cmd = new FbCommand("ADD_ORDER", Connection);
-                //cmd.CommandText = "ADD_ORDER";
-                //cmd.Parameters.Add(GOODS);
-                //cmd.Parameters.Add(AMOUNT);
-                //cmd.Parameters.Add(AGENT_NAME);
-                //cmd.Parameters.Add(WH_NAME);
-                //cmd.Parameters.Add(TYPE_OP);
-                //cmd.Parameters.Add(PRICE);
-                //cmd.Parameters.Add(DEL_TIME);
-                //cmd.Parameters.Add(DEL_DATE);
-                //cmd.Parameters.Add(DELIV);
-                //cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                //var reader = cmd.ExecuteReader();
                 dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ADD_ORDER(@GOODS, @AMOUNT, @AGENT_NAME, @WH_NAME, @TYPE_OP, @PRICE, @DEL_TIME, @DEL_DATE, @DELIV)", GOODS, AMOUNT, AGENT_NAME, WH_NAME, TYPE_OP, PRICE, DEL_TIME, DEL_DATE, DELIV);
 
-
-                metroTile2_Click(sender, e);
+                string tmp = num_auto;
+                metroTile2_Click(null, null);
 
                 ResultLabel.Visible = true;
                 ResultLabel.ForeColor = Color.Green;
-                ResultLabel.Text = "Your order has been successfully submitted";
+                ResultLabel.Text = "Your order has been successfully submitted. ";
+                if (tmp != "")
+                    ResultLabel.Text += ("Vehicle №" + tmp);
+               
             }
 
             else
             {
-
-                metroTile2_Click(sender, e);
                 ResultLabel.Visible = true;
                 ResultLabel.ForeColor = Color.Red;
-                ResultLabel.Text = "Your order has not been submitted. Correct fields and try again";
+                ResultLabel.Text = "Your order has not been submitted. Correct fields and try again.";
             }
 
 
         }
-
     }
 }

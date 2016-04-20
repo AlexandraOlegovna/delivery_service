@@ -23,6 +23,7 @@ namespace Delivery
             this.ActiveControl = null;
             LoginField.Select();
             PassField.UseSystemPasswordChar = true;
+            AddOwnedForm(form1);
         }
 
         private void metroTile2_Click(object sender, EventArgs e)
@@ -33,7 +34,10 @@ namespace Delivery
         private void butSignIn_Click(object sender, EventArgs e)
         {
             if (LoginField.Text == "it39" && PassField.Text == "it39")
-                AddOwnedForm(form1); 
+            {
+                form1.Show();
+            }
+
             else
             {
                 label1.ForeColor = Color.FromArgb(231, 113, 189);
