@@ -205,6 +205,7 @@ namespace Delivery
         private void butQuit_Click(object sender, System.EventArgs e)
         {
             this.Close();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void checkDelivery_CheckedChanged(object sender, System.EventArgs e)
