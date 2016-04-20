@@ -48,7 +48,7 @@
             this.butQuit = new MetroFramework.Controls.MetroTile();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.checkDelivery = new MetroFramework.Controls.MetroCheckBox();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.resultVehicle = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // r_AgToWh
@@ -368,24 +368,24 @@
             this.checkDelivery.UseSelectable = true;
             this.checkDelivery.CheckedChanged += new System.EventHandler(this.checkDelivery_CheckedChanged);
             // 
-            // metroLabel7
+            // resultVehicle
             // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(428, 232);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(37, 19);
-            this.metroLabel7.Style = MetroFramework.MetroColorStyle.Pink;
-            this.metroLabel7.TabIndex = 26;
-            this.metroLabel7.Text = "TEST";
-            this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel7.Visible = false;
+            this.resultVehicle.AutoSize = true;
+            this.resultVehicle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.resultVehicle.Location = new System.Drawing.Point(428, 232);
+            this.resultVehicle.Name = "resultVehicle";
+            this.resultVehicle.Size = new System.Drawing.Size(37, 19);
+            this.resultVehicle.Style = MetroFramework.MetroColorStyle.Pink;
+            this.resultVehicle.TabIndex = 26;
+            this.resultVehicle.Text = "TEST";
+            this.resultVehicle.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 318);
-            this.Controls.Add(this.metroLabel7);
+            this.Controls.Add(this.resultVehicle);
             this.Controls.Add(this.checkDelivery);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.butQuit);
@@ -453,7 +453,7 @@
         private MetroFramework.Controls.MetroTile butQuit;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroCheckBox checkDelivery;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroLabel resultVehicle;
     }
 }
 

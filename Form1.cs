@@ -12,7 +12,10 @@ namespace Delivery
 
         Model3 dbContext = new Model3();
         FbConnection Connection;
-        SortedDictionary<string, int> Volume = new SortedDictionary<string, int>();
+        List<string> Agents = new List<string>();
+        List<string> Warehouses = new List<string>();
+        List<string> Items = new List<string>();
+        SortedDictionary<string, int> ItemsVolume = new SortedDictionary<string, int>();
 
         public Form1()
         {
@@ -27,42 +30,33 @@ namespace Delivery
             dbContext.Database.Connection.ConnectionString = builder.ConnectionString;
             dbContext.Database.Connection.Open();
 
-            FbParameter parm = new FbParameter()
+            var agents =
+                   from agent in dbContext.AGENTs
+                   orderby agent.NAME_AG
+                   select agent;
+            List<AGENT> a = agents.ToList();
+            for (int i = 0; i < a.Count; ++i)
+               Agents.Add(a[i].NAME_AG);
+
+            var whs =
+                    from warehouse in dbContext.WAREHOUSEs
+                    orderby warehouse.NAIMEN
+                    select warehouse;
+            List<WAREHOUSE> b = whs.ToList();
+            for (int i = 0; i < b.Count; ++i)
+               Warehouses.Add(b[i].NAIMEN);
+
+            var items =
+                    from item in dbContext.TOVARs
+                    orderby item.NOMENCLATURE
+                    select item;
+            List<TOVAR> t = items.ToList();
+            for (int i = 0; i < t.Count; ++i)
             {
-                ParameterName = "@MyID",
-                FbDbType = FbDbType.Array,
-                Direction = System.Data.ParameterDirection.ReturnValue,
-                Size = 100
-            };
+                Items.Add(t[i].NOMENCLATURE);
+                ItemsVolume.Add(t[i].NOMENCLATURE, t[i].VOLUME);
+            }
 
-            //dbContext.Database.ExecuteSqlCommandAsync("EXECUTE PROCEDURE ITEM_NAMES", parm);
-
-            FbConnection myConnection1 = new FbConnection(dbContext.Database.Connection.ConnectionString);
-
-            myConnection1.Open();
-
-            FbCommand cmd = new FbCommand("ITEM_NAMES", myConnection1);
-            cmd.CommandText = "ITEM_NAMES";
-            //FbDataReader reader;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //reader = cmd.ExecuteReader();
-            //var x = reader[0];
-
-            FbDataAdapter da = new FbDataAdapter(cmd);
-
-            System.Data.DataTable ds = new System.Data.DataTable();
-            da.Fill(ds);
-            //var x = ds.Container.Components.Count;
-
-            //System.Data.DataTable dt = ds.Tables["result_name"];
-
-            //foreach (System.Data.DataRow row in dt.Rows)
-            //{
-            //    //manipulate your data
-            //}
-
-
-            bool b = true;
         }
 
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
@@ -132,23 +126,13 @@ namespace Delivery
 
             if (r_AgToWh.Checked)
             {
-                var customers =
-                   from agent in dbContext.AGENTs
-                   orderby agent.NAME_AG
-                   select agent;
-                List<AGENT> a = customers.ToList();
                 ListFrom.Items.Clear();
-                for (int i = 0; i < a.Count; ++i)
-                    ListFrom.Items.Add(a[i].NAME_AG);
+                for (int i = 0; i < Agents.Count; ++i)
+                    ListFrom.Items.Add(Agents[i]);
 
-                var whs =
-                    from warehouse in dbContext.WAREHOUSEs
-                    orderby warehouse.NAIMEN
-                    select warehouse;
-                List<WAREHOUSE> b = whs.ToList();
                 ListTo.Items.Clear();
-                for (int i = 0; i < b.Count; ++i)
-                    ListTo.Items.Add(b[i].NAIMEN);
+                for (int i = 0; i < Warehouses.Count; ++i)
+                    ListTo.Items.Add(Warehouses[i]);
 
                 ListFrom.Enabled = true;
                 ListTo.Enabled = true;
@@ -160,33 +144,24 @@ namespace Delivery
         {
             if (r_WhToAg.Checked)
             {
-                var customers =
-                    from agent in dbContext.AGENTs
-                    orderby agent.NAME_AG
-                    select agent;
-                List<AGENT> a = customers.ToList();
-                ListTo.Items.Clear();
-                for (int i = 0; i < a.Count; ++i)
-                    ListTo.Items.Add(a[i].NAME_AG);
+                reset();
 
-                var whs =
-                    from warehouse in dbContext.WAREHOUSEs
-                    orderby warehouse.NAIMEN
-                    select warehouse;
-                List<WAREHOUSE> b = whs.ToList();
+                ListTo.Items.Clear();
+                for (int i = 0; i < Agents.Count; ++i)
+                    ListTo.Items.Add(Agents[i]);
+
                 ListFrom.Items.Clear();
-                for (int i = 0; i < b.Count; ++i)
-                    ListFrom.Items.Add(b[i].NAIMEN);
+                for (int i = 0; i < Warehouses.Count; ++i)
+                    ListFrom.Items.Add(Warehouses[i]);
 
                 ListFrom.Enabled = true;
                 ListTo.Enabled = true;
             }
-        
+
         }
 
         private void metroComboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            ItemList.Enabled = true;
 
             if (r_WhToAg.Checked)
             {
@@ -207,18 +182,13 @@ namespace Delivery
             }
 
             if (r_AgToWh.Checked) {
-                var items =
-                    from item in dbContext.TOVARs
-                    orderby item.NOMENCLATURE
-                    select item;
-                List<TOVAR> b = items.ToList();
                 ItemList.Items.Clear();
-                for (int i = 0; i < b.Count; ++i)
-                {
-                    Volume.Add(b[i].NOMENCLATURE, b[i].VOLUME);
-                    ItemList.Items.Add(b[i].NOMENCLATURE);
-                }
+                for (int i = 0; i < Items.Count; ++i)
+                    ItemList.Items.Add(Items[i]);
+
             }
+
+            ItemList.Enabled = true;
 
         } 
         
@@ -237,11 +207,18 @@ namespace Delivery
         }
 
         private void reset() {
+            ListFrom.Enabled = false;
+            ListTo.Enabled = false;
+            ItemList.Enabled = true;
+            AmountField.Enabled = false;
+            PriseField.Enabled = false;
+            DateTime.Enabled = false;
             ListFrom.Items.Clear();
             ListTo.Items.Clear();
             ItemList.Items.Clear();
-            AmountTrack.Value = 0;
-            AmountField.Text = "0";
+            ItemList.Enabled = false;
+            AmountTrack.Value = 1;
+            AmountField.Text = "1";
             PriseField.Text = "0";
             DateTime.Value = System.DateTime.Now;
             checkDelivery.Checked = false;
@@ -282,27 +259,39 @@ namespace Delivery
         private void TimeList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
 
-            //FbParameter parm1 = new FbParameter("Volume", FbDbType.Integer);
-            //FbParameter parm2 = new FbParameter("Date", FbDbType.Date);
-            //FbParameter parm3 = new FbParameter("Time", FbDbType.TimeStamp);
-            //parm1.Value = Volume[ItemList.SelectedItem.ToString()] * System.Convert.ToInt32(AmountField.Text);
-            //parm2.Value = DateTime.Value;
-            //string tmp = TimeList.SelectedItem.ToString();
-            //parm3.Value = new System.TimeSpan(System.Convert.ToInt32(tmp.Remove(tmp.IndexOf(':'))), 0, 0);
-            //Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
-            //Connection.Open();
+            FbParameter parm1 = new FbParameter("Volume", FbDbType.Integer);
+            FbParameter parm2 = new FbParameter("Date", FbDbType.Date);
+            FbParameter parm3 = new FbParameter("Time", FbDbType.Time);
+            parm1.Value = ItemsVolume[ItemList.SelectedItem.ToString()] * System.Convert.ToInt32(AmountField.Text);
+            parm2.Value = DateTime.Value.Date;
+            string tmp = TimeList.SelectedItem.ToString();
+            
+            parm3.Value = System.TimeSpan.Parse(tmp); //new System.TimeSpan(System.Convert.ToInt32(tmp.Remove(tmp.IndexOf(':'))), 0, 0);
+            Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
+            Connection.Open();
 
-            //FbCommand cmd = new FbCommand("PROCEDURE's NAME", Connection);
-            //cmd.CommandText = "PROCEDURE's NAME";
-            //cmd.Parameters.Add(parm1);
-            //cmd.Parameters.Add(parm2);
-            //cmd.Parameters.Add(parm3);
-            //cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //var reader = cmd.ExecuteReader();
-            //reader.Read();
-            ////! TO DO if null -> unsuccess; else -> sucssecc 
-                
-            //Connection.Close(); 
+            FbCommand cmd = new FbCommand("CHOOSE_VEHICLE", Connection);
+            cmd.CommandText = "CHOOSE_VEHICLE";
+            cmd.Parameters.Add(parm2);
+            cmd.Parameters.Add(parm3);
+            cmd.Parameters.Add(parm1);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            string result;
+            try {
+                result = reader.GetValue(0).ToString();
+            }
+            catch {
+                result = "null";
+            }
+            resultVehicle.Visible = true;
+            resultVehicle.Text = "";
+            if (result == "null")
+                resultVehicle.Text = "UNSUCCESS";
+            else
+                resultVehicle.Text = "VEHICLE №" + result; 
+            Connection.Close();
         }
     }
 }
