@@ -58,8 +58,7 @@ namespace Delivery
                 Items.Add(t[i].NOMENCLATURE);
                 ItemsVolume.Add(t[i].NOMENCLATURE, t[i].VOLUME);
         }
-    }
-            
+    }  
 
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
@@ -143,6 +142,8 @@ namespace Delivery
 
                 ListFrom.Enabled = true;
                 ListTo.Enabled = true;
+                butApply.Enabled = true;
+                butReset1.Enabled = true;
             }
             
         }
@@ -163,6 +164,8 @@ namespace Delivery
 
                 ListFrom.Enabled = true;
                 ListTo.Enabled = true;
+                butApply.Enabled = true;
+                butReset1.Enabled = true;
             }
 
         }
@@ -233,6 +236,8 @@ namespace Delivery
             checkDelivery.Checked = false;
             resultVehicle.Visible = false;
             ResultLabel.Visible = false;
+            butApply.Enabled = false;
+            butReset1.Enabled = false;
         }
 
         private void ItemList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -409,6 +414,9 @@ namespace Delivery
                 //var reader = cmd.ExecuteReader();
                 dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ADD_ORDER(@GOODS, @AMOUNT, @AGENT_NAME, @WH_NAME, @TYPE_OP, @PRICE, @DEL_TIME, @DEL_DATE, @DELIV)", GOODS, AMOUNT, AGENT_NAME, WH_NAME, TYPE_OP, PRICE, DEL_TIME, DEL_DATE, DELIV);
 
+
+                metroTile2_Click(sender, e);
+
                 ResultLabel.Visible = true;
                 ResultLabel.ForeColor = Color.Green;
                 ResultLabel.Text = "Your order has been successfully submitted";
@@ -416,11 +424,15 @@ namespace Delivery
 
             else
             {
+
+                metroTile2_Click(sender, e);
                 ResultLabel.Visible = true;
                 ResultLabel.ForeColor = Color.Red;
                 ResultLabel.Text = "Your order has not been submitted. Correct fields and try again";
             }
 
+
         }
+
     }
 }

@@ -61,7 +61,7 @@
             this.r_AgToWh.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.r_AgToWh.Location = new System.Drawing.Point(11, 9);
             this.r_AgToWh.Name = "r_AgToWh";
-            this.r_AgToWh.Size = new System.Drawing.Size(218, 25);
+            this.r_AgToWh.Size = new System.Drawing.Size(217, 25);
             this.r_AgToWh.Style = MetroFramework.MetroColorStyle.Pink;
             this.r_AgToWh.TabIndex = 0;
             this.r_AgToWh.Text = "AGENT ➔ WAREHOUSE";
@@ -75,7 +75,7 @@
             this.r_WhToAg.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.r_WhToAg.Location = new System.Drawing.Point(11, 40);
             this.r_WhToAg.Name = "r_WhToAg";
-            this.r_WhToAg.Size = new System.Drawing.Size(218, 25);
+            this.r_WhToAg.Size = new System.Drawing.Size(217, 25);
             this.r_WhToAg.Style = MetroFramework.MetroColorStyle.Pink;
             this.r_WhToAg.TabIndex = 1;
             this.r_WhToAg.Text = "WAREHOUSE ➔ AGENT";
@@ -127,7 +127,7 @@
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel2.Location = new System.Drawing.Point(332, 119);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(39, 25);
+            this.metroLabel2.Size = new System.Drawing.Size(38, 25);
             this.metroLabel2.TabIndex = 5;
             this.metroLabel2.Text = "TO:";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -317,6 +317,7 @@
             // butApply
             // 
             this.butApply.ActiveControl = null;
+            this.butApply.Enabled = false;
             this.butApply.Location = new System.Drawing.Point(247, 452);
             this.butApply.Name = "butApply";
             this.butApply.Size = new System.Drawing.Size(129, 30);
@@ -332,6 +333,7 @@
             // butReset1
             // 
             this.butReset1.ActiveControl = null;
+            this.butReset1.Enabled = false;
             this.butReset1.Location = new System.Drawing.Point(46, 452);
             this.butReset1.Name = "butReset1";
             this.butReset1.Size = new System.Drawing.Size(129, 30);
@@ -366,10 +368,10 @@
             this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel5.Location = new System.Drawing.Point(29, 289);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(58, 25);
+            this.metroLabel5.Size = new System.Drawing.Size(60, 25);
             this.metroLabel5.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel5.TabIndex = 24;
-            this.metroLabel5.Text = "PRISE:";
+            this.metroLabel5.Text = "PRICE:";
             this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // checkDelivery
@@ -393,7 +395,7 @@
             this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel7.Location = new System.Drawing.Point(328, 290);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(57, 25);
+            this.metroLabel7.Size = new System.Drawing.Size(55, 25);
             this.metroLabel7.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel7.TabIndex = 27;
             this.metroLabel7.Text = "DATE:";
