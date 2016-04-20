@@ -48,9 +48,10 @@
             this.butQuit = new MetroFramework.Controls.MetroTile();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.checkDelivery = new MetroFramework.Controls.MetroCheckBox();
-            this.resultVehicle = new MetroFramework.Controls.MetroLabel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.resultVehicle = new System.Windows.Forms.Label();
+            this.ResultLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -270,6 +271,7 @@
             this.DateTime.Style = MetroFramework.MetroColorStyle.Pink;
             this.DateTime.TabIndex = 16;
             this.DateTime.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DateTime.ValueChanged += new System.EventHandler(this.DateTime_ValueChanged);
             // 
             // TimeList
             // 
@@ -315,7 +317,7 @@
             // butApply
             // 
             this.butApply.ActiveControl = null;
-            this.butApply.Location = new System.Drawing.Point(242, 489);
+            this.butApply.Location = new System.Drawing.Point(247, 452);
             this.butApply.Name = "butApply";
             this.butApply.Size = new System.Drawing.Size(129, 30);
             this.butApply.Style = MetroFramework.MetroColorStyle.Pink;
@@ -325,11 +327,12 @@
             this.butApply.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.butApply.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.butApply.UseSelectable = true;
+            this.butApply.Click += new System.EventHandler(this.butApply_Click);
             // 
             // butReset1
             // 
             this.butReset1.ActiveControl = null;
-            this.butReset1.Location = new System.Drawing.Point(41, 489);
+            this.butReset1.Location = new System.Drawing.Point(46, 452);
             this.butReset1.Name = "butReset1";
             this.butReset1.Size = new System.Drawing.Size(129, 30);
             this.butReset1.Style = MetroFramework.MetroColorStyle.Pink;
@@ -344,7 +347,7 @@
             // butQuit
             // 
             this.butQuit.ActiveControl = null;
-            this.butQuit.Location = new System.Drawing.Point(437, 489);
+            this.butQuit.Location = new System.Drawing.Point(442, 452);
             this.butQuit.Name = "butQuit";
             this.butQuit.Size = new System.Drawing.Size(129, 30);
             this.butQuit.Style = MetroFramework.MetroColorStyle.Pink;
@@ -383,20 +386,6 @@
             this.checkDelivery.UseSelectable = true;
             this.checkDelivery.CheckedChanged += new System.EventHandler(this.checkDelivery_CheckedChanged);
             // 
-            // resultVehicle
-            // 
-            this.resultVehicle.AutoSize = true;
-            this.resultVehicle.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.resultVehicle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.resultVehicle.Location = new System.Drawing.Point(242, 416);
-            this.resultVehicle.Name = "resultVehicle";
-            this.resultVehicle.Size = new System.Drawing.Size(48, 25);
-            this.resultVehicle.Style = MetroFramework.MetroColorStyle.Pink;
-            this.resultVehicle.TabIndex = 26;
-            this.resultVehicle.Text = "TEST";
-            this.resultVehicle.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.resultVehicle.Visible = false;
-            // 
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
@@ -417,20 +406,45 @@
             this.panel1.Controls.Add(this.r_AgToWh);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.panel1.Location = new System.Drawing.Point(332, 15);
+            this.panel1.Location = new System.Drawing.Point(332, 23);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(239, 74);
             this.panel1.TabIndex = 28;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.r_AgToWh_Paint);
+            // 
+            // resultVehicle
+            // 
+            this.resultVehicle.AutoSize = true;
+            this.resultVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.resultVehicle.ForeColor = System.Drawing.Color.Red;
+            this.resultVehicle.Location = new System.Drawing.Point(492, 410);
+            this.resultVehicle.Name = "resultVehicle";
+            this.resultVehicle.Size = new System.Drawing.Size(46, 17);
+            this.resultVehicle.TabIndex = 29;
+            this.resultVehicle.Text = "label1";
+            this.resultVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.resultVehicle.Visible = false;
+            // 
+            // ResultLabel
+            // 
+            this.ResultLabel.AutoSize = true;
+            this.ResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ResultLabel.ForeColor = System.Drawing.Color.Red;
+            this.ResultLabel.Location = new System.Drawing.Point(228, 511);
+            this.ResultLabel.Name = "ResultLabel";
+            this.ResultLabel.Size = new System.Drawing.Size(46, 17);
+            this.ResultLabel.TabIndex = 30;
+            this.ResultLabel.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 549);
+            this.Controls.Add(this.ResultLabel);
+            this.Controls.Add(this.resultVehicle);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.metroLabel7);
-            this.Controls.Add(this.resultVehicle);
             this.Controls.Add(this.checkDelivery);
             this.Controls.Add(this.metroLabel5);
             this.Controls.Add(this.butQuit);
@@ -498,9 +512,10 @@
         private MetroFramework.Controls.MetroTile butQuit;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroCheckBox checkDelivery;
-        private MetroFramework.Controls.MetroLabel resultVehicle;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label resultVehicle;
+        private System.Windows.Forms.Label ResultLabel;
     }
 }
 

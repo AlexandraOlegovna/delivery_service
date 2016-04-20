@@ -17,6 +17,7 @@ namespace Delivery
         List<string> Warehouses = new List<string>();
         List<string> Items = new List<string>();
         SortedDictionary<string, int> ItemsVolume = new SortedDictionary<string, int>();
+        string num_auto = "";
 
         public Form1()
         {
@@ -63,6 +64,8 @@ namespace Delivery
         private void metroTrackBar1_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
             AmountField.Text = AmountTrack.Value.ToString();
+            TimeList.SelectedItem = null;
+            resultVehicle.Visible = false;
         }
 
         private bool NotContainSymbols(string s)
@@ -87,6 +90,9 @@ namespace Delivery
                 AmountTrack.Value = AmountTrack.Maximum;
             else
                 AmountTrack.Value = v;
+
+            TimeList.SelectedItem = null;
+            resultVehicle.Visible = false;
         }
 
         private void metroTextBox1_Click(object sender, System.EventArgs e)
@@ -208,8 +214,6 @@ namespace Delivery
         }
 
         private void reset() {
-            ListFrom.Enabled = false;
-            ListTo.Enabled = false;
             ItemList.Enabled = true;
             AmountField.Enabled = false;
             PriseField.Enabled = false;
@@ -217,12 +221,15 @@ namespace Delivery
             ListFrom.Items.Clear();
             ListTo.Items.Clear();
             ItemList.Items.Clear();
+            ListFrom.Enabled = false;
+            ListTo.Enabled = false;
             ItemList.Enabled = false;
             AmountTrack.Value = 1;
             AmountField.Text = "1";
             PriseField.Text = "0";
             DateTime.Value = System.DateTime.Now;
             checkDelivery.Checked = false;
+            resultVehicle.Visible = false;
         }
 
         private void ItemList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -259,45 +266,58 @@ namespace Delivery
 
         private void TimeList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            num_auto = "";
+            if (TimeList.SelectedItem != null)
+            {
 
-            FbParameter parm1 = new FbParameter("Volume", FbDbType.Integer);
-            FbParameter parm2 = new FbParameter("Date", FbDbType.Date);
-            FbParameter parm3 = new FbParameter("Time", FbDbType.Time);
-            parm1.Value = ItemsVolume[ItemList.SelectedItem.ToString()] * System.Convert.ToInt32(AmountField.Text);
-            parm2.Value = DateTime.Value.Date;
-            string tmp = TimeList.SelectedItem.ToString();
-            
-            parm3.Value = System.TimeSpan.Parse(tmp); //new System.TimeSpan(System.Convert.ToInt32(tmp.Remove(tmp.IndexOf(':'))), 0, 0);
-            Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
-            Connection.Open();
+                FbParameter parm1 = new FbParameter("Volume", FbDbType.Integer);
+                FbParameter parm2 = new FbParameter("Date", FbDbType.Date);
+                FbParameter parm3 = new FbParameter("Time", FbDbType.Time);
+                parm1.Value = ItemsVolume[ItemList.SelectedItem.ToString()] * System.Convert.ToInt32(AmountField.Text);
+                parm2.Value = DateTime.Value.Date;
+                //string tmp = TimeList.SelectedItem.ToString();
 
-            FbCommand cmd = new FbCommand("CHOOSE_VEHICLE", Connection);
-            cmd.CommandText = "CHOOSE_VEHICLE";
-            cmd.Parameters.Add(parm2);
-            cmd.Parameters.Add(parm3);
-            cmd.Parameters.Add(parm1);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            var reader = cmd.ExecuteReader();
-            reader.Read();
-            string result;
-            try {
-                result = reader.GetValue(0).ToString();
+                parm3.Value = System.TimeSpan.Parse(TimeList.SelectedItem.ToString()); //new System.TimeSpan(System.Convert.ToInt32(tmp.Remove(tmp.IndexOf(':'))), 0, 0);
+                Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
+                Connection.Open();
+
+                FbCommand cmd = new FbCommand("CHOOSE_VEHICLE", Connection);
+                cmd.CommandText = "CHOOSE_VEHICLE";
+                cmd.Parameters.Add(parm2);
+                cmd.Parameters.Add(parm3);
+                cmd.Parameters.Add(parm1);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                var reader = cmd.ExecuteReader();
+                reader.Read();
+                string result;
+                try
+                {
+                    result = reader.GetValue(0).ToString();
+                }
+                catch
+                {
+                    result = "null";
+                }
+                resultVehicle.Visible = true;
+                resultVehicle.Text = "";
+                if (result == "null")
+                {
+                    resultVehicle.ForeColor = Color.Red;
+                    resultVehicle.Text = "UNSUCCESS";
+                }
+                else
+                {
+                    num_auto = result;
+                    resultVehicle.ForeColor = Color.Green;
+                    resultVehicle.Text = "SUCCESS";
+                }
+                Connection.Close();  
             }
-            catch {
-                result = "null";
-            }
-            resultVehicle.Visible = true;
-            resultVehicle.Text = "";
-            if (result == "null")
-                resultVehicle.Text = "UNSUCCESS";
-            else
-                resultVehicle.Text = "VEHICLE №" + result; 
-            Connection.Close();
         }
 
         private void r_AgToWh_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            int thickness = 2;//it's up to you
+            int thickness = 1;//it's up to you
             int halfThickness = thickness / 2;
             using (System.Drawing.Pen p = new Pen(Color.FromArgb(231, 113, 189), thickness))
             {
@@ -307,6 +327,90 @@ namespace Delivery
                                                           panel1.ClientSize.Height - thickness));
 
             }
+        }
+
+        private void DateTime_ValueChanged(object sender, System.EventArgs e)
+        {
+            TimeList.SelectedItem = null;
+            resultVehicle.Visible = false;
+        }
+
+        private void butApply_Click(object sender, System.EventArgs e)
+        {
+            string Type_OP = "";
+            if (r_AgToWh.Checked)
+                Type_OP = "A";
+            if (r_WhToAg.Checked)
+                Type_OP = "R";
+
+            string From = ListFrom.SelectedItem.ToString();
+            string To = ListTo.SelectedItem.ToString();
+            string Item = ItemList.SelectedItem.ToString();
+
+            if ((Type_OP != "") && (From != "") && (To != "") && (Item != "") && (((checkDelivery.Checked) && (num_auto != "")) || (!checkDelivery.Checked)))
+            {
+                int Amount = System.Convert.ToInt32(AmountField.Text);
+                int Prise = System.Convert.ToInt32(PriseField.Text);
+                System.TimeSpan Del_time;
+                if (TimeList.SelectedItem == null)
+                    Del_time = new System.TimeSpan(0, 0, 0);
+                else
+                    Del_time = System.TimeSpan.Parse(TimeList.SelectedItem.ToString());
+                System.DateTime Del_Date = DateTime.Value.Date;
+
+
+                FbParameter GOODS = new FbParameter("GOODS", FbDbType.Char);
+                FbParameter AMOUNT = new FbParameter("AMOUNT", FbDbType.Integer);
+                FbParameter AGENT_NAME = new FbParameter("AGENT_NAME", FbDbType.Char);
+                FbParameter WH_NAME = new FbParameter("WH_NAME", FbDbType.Char);
+                FbParameter TYPE_OP = new FbParameter("TYPE_OP", FbDbType.Char);
+                FbParameter PRICE = new FbParameter("PRICE", FbDbType.Integer);
+                FbParameter DEL_TIME = new FbParameter("DEL_TIME", FbDbType.Time);
+                FbParameter DEL_DATE = new FbParameter("DEL_DATE", FbDbType.Date);
+                FbParameter DELIV = new FbParameter("DELIV", FbDbType.Char);
+                GOODS.Value = Item;
+                AMOUNT.Value = Amount;
+                if (r_AgToWh.Checked) {
+                    AGENT_NAME.Value = From;
+                    WH_NAME.Value = To;
+                }
+                if (r_WhToAg.Checked) {
+                    AGENT_NAME.Value = To;
+                    WH_NAME.Value = From;
+                }
+                PRICE.Value = Prise;
+                DEL_TIME.Value = Del_time;
+                DEL_DATE.Value = Del_Date;
+                if (checkDelivery.Checked)
+                    DELIV.Value = 'Y';
+                else DELIV.Value = 'N';
+                TYPE_OP.Value = Type_OP[0];
+
+                Connection = new FbConnection(dbContext.Database.Connection.ConnectionString);
+                Connection.Open();
+
+                //FbCommand cmd = new FbCommand("ADD_ORDER", Connection);
+                //cmd.CommandText = "ADD_ORDER";
+                //cmd.Parameters.Add(GOODS);
+                //cmd.Parameters.Add(AMOUNT);
+                //cmd.Parameters.Add(AGENT_NAME);
+                //cmd.Parameters.Add(WH_NAME);
+                //cmd.Parameters.Add(TYPE_OP);
+                //cmd.Parameters.Add(PRICE);
+                //cmd.Parameters.Add(DEL_TIME);
+                //cmd.Parameters.Add(DEL_DATE);
+                //cmd.Parameters.Add(DELIV);
+                //cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                //var reader = cmd.ExecuteReader();
+                dbContext.Database.ExecuteSqlCommand("EXECUTE PROCEDURE ADD_ORDER(@GOODS, @AMOUNT, @AGENT_NAME, @WH_NAME, @TYPE_OP, @PRICE, @DEL_TIME, @DEL_DATE, @DELIV)", GOODS, AMOUNT, AGENT_NAME, WH_NAME, TYPE_OP, PRICE, DEL_TIME, DEL_DATE, DELIV);
+                
+
+                ResultLabel.Text = "SUCCESS";
+            }
+
+            else
+                ResultLabel.Text = "UNSUCCESS";
+
         }
     }
 }
