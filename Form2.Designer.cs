@@ -44,7 +44,7 @@
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel1.Location = new System.Drawing.Point(72, 79);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(68, 25);
+            this.metroLabel1.Size = new System.Drawing.Size(67, 25);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "LOGIN:";
@@ -57,7 +57,7 @@
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel2.Location = new System.Drawing.Point(72, 142);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(113, 25);
+            this.metroLabel2.Size = new System.Drawing.Size(112, 25);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel2.TabIndex = 1;
             this.metroLabel2.Text = "PASSWORD:";
