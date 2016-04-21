@@ -50,5 +50,6 @@ namespace Delivery
         {
             label1.Visible = false;
         }
+        
     }
 }
