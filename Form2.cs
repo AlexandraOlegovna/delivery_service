@@ -20,8 +20,7 @@ namespace Delivery
         public Form2()
         {
             InitializeComponent();
-            this.ActiveControl = null;
-            LoginField.Select();
+            this.ActiveControl = LoginField;
             PassField.UseSystemPasswordChar = true;
             AddOwnedForm(form1);
         }
@@ -35,7 +34,8 @@ namespace Delivery
         {
             if (LoginField.Text == "it39" && PassField.Text == "it39")
             {
-                form1.Show();
+                form1.ShowDialog();
+                this.Close();
 
             }
 
